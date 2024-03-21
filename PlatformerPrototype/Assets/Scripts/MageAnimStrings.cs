@@ -8,5 +8,8 @@ using Unity.VisualScripting;
 internal class MageAnimStrings
 {
     internal static string isRunning = "isRunning";
+    internal static string isGrounded = "isGrounded";
+    internal static string yVelocity = "yVelocity";
+    //internal static string jumpTrigger = "jumpTrigger";
 }
 

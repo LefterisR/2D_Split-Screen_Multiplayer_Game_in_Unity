@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class MageController : MonoBehaviour
@@ -11,16 +12,19 @@ public class MageController : MonoBehaviour
     [SerializeField]
     private float airSpeed = 7.5f;
     [SerializeField]
-    private float jumpForce;
+    private float jumpForce = 10.8f;
 
+   
     //Components 
     Rigidbody2D rbMage;
     Animator animator;
 
-   
+    EnvironmentData contact;
+
 
     private bool _isRunning = false;
     private bool _isFacingRight = true;
+    
 
     public bool IsRunning
     {
@@ -53,12 +57,13 @@ public class MageController : MonoBehaviour
         //Retrive Components
         rbMage = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-       
+        contact = GetComponent<EnvironmentData>();
+
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     private void SetSpriteOrientation(float velocityX)
     {
@@ -72,18 +77,24 @@ public class MageController : MonoBehaviour
         }
 
     }
+
+
+   
     // Update is called once per frame
     void Update()
     {
         float speed;
-
         input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
         Vector2 inputNormalized = input.normalized;
 
+        if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
+        else speed = airSpeed * inputNormalized.x;
 
-        speed = runningSpeed * inputNormalized.x;
+
+
+      //  Debug.Log("Current speed: " + speed);
         rbMage.velocity = new(speed, rbMage.velocity.y);
-        SetSpriteOrientation(rbMage.velocity.x);
+        animator.SetFloat(MageAnimStrings.yVelocity, rbMage.velocity.y);
 
         if (rbMage.velocity != Vector2.zero)
         {
@@ -93,6 +104,44 @@ public class MageController : MonoBehaviour
         {
             IsRunning = false;
         }
-        
+       
+        if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
+        {
+            
+            rbMage.velocity = new(rbMage.velocity.x, jumpForce);
+           
+        }
+
+        //Set Jump style
+        if (rbMage.velocity.y > 0)
+        {
+            rbMage.gravityScale = 0.95f; //jump start 
+        }
+        else if (rbMage.velocity.y < 0) 
+        {
+            rbMage.gravityScale = 5f; //force rapid returnal speed
+        }
+        else rbMage.gravityScale = 1f; //reset default value
+
+        if (contact.HitWall && !contact.TouchGround)
+        {
+            rbMage.velocity = new(0, rbMage.velocity.y);
+
+        }
+
+       
+        SetSpriteOrientation(rbMage.velocity.x);
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
