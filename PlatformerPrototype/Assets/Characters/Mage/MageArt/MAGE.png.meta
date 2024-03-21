@@ -433,7 +433,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_30
+      name: MAGE_run_0
       rect:
         serializedVersion: 2
         x: 19
@@ -454,7 +454,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_31
+      name: MAGE_run_1
       rect:
         serializedVersion: 2
         x: 85
@@ -475,7 +475,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_32
+      name: MAGE_run2
       rect:
         serializedVersion: 2
         x: 149
@@ -496,7 +496,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_33
+      name: MAGE_run3
       rect:
         serializedVersion: 2
         x: 213
@@ -517,7 +517,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_34
+      name: MAGE_mage_run4
       rect:
         serializedVersion: 2
         x: 277
@@ -538,7 +538,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_35
+      name: MAGE_run5
       rect:
         serializedVersion: 2
         x: 340
@@ -559,7 +559,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_36
+      name: MAGE_run6
       rect:
         serializedVersion: 2
         x: 405
@@ -580,7 +580,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_38
+      name: MAGE_attack_0
       rect:
         serializedVersion: 2
         x: 16
@@ -601,7 +601,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_39
+      name: MAGE_attack_1
       rect:
         serializedVersion: 2
         x: 78
@@ -622,7 +622,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_40
+      name: MAGE_attack_2
       rect:
         serializedVersion: 2
         x: 142
@@ -643,7 +643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_41
+      name: MAGE_attack_3
       rect:
         serializedVersion: 2
         x: 214
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_42
+      name: MAGE_attack_4
       rect:
         serializedVersion: 2
         x: 279
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_45
+      name: MAGE_attack_5
       rect:
         serializedVersion: 2
         x: 343
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_46
+      name: MAGE_attack_7
       rect:
         serializedVersion: 2
         x: 465
@@ -727,7 +727,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_48
+      name: MAGE_attack_6
       rect:
         serializedVersion: 2
         x: 407
@@ -1063,7 +1063,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_66
+      name: MAGE_jump_0
       rect:
         serializedVersion: 2
         x: 19
@@ -1084,7 +1084,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_67
+      name: MAGE_jump_1
       rect:
         serializedVersion: 2
         x: 82
@@ -1105,7 +1105,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_68
+      name: MAGE_jump_2
       rect:
         serializedVersion: 2
         x: 146
@@ -1126,7 +1126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_69
+      name: MAGE_jump_3
       rect:
         serializedVersion: 2
         x: 211
@@ -1147,7 +1147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_70
+      name: MAGE_jump_4
       rect:
         serializedVersion: 2
         x: 275
@@ -1168,7 +1168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_71
+      name: MAGE_fire_0
       rect:
         serializedVersion: 2
         x: 15
@@ -1189,7 +1189,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_72
+      name: MAGE_fire_1
       rect:
         serializedVersion: 2
         x: 79
@@ -1210,7 +1210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_74
+      name: MAGE_fire_2
       rect:
         serializedVersion: 2
         x: 151
@@ -1231,7 +1231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MAGE_75
+      name: MAGE_fire_3
       rect:
         serializedVersion: 2
         x: 215
@@ -1449,25 +1449,10 @@ TextureImporter:
       MAGE_27: -1491017756
       MAGE_28: 571168984
       MAGE_29: -1425210444
-      MAGE_30: -1856757166
-      MAGE_31: 1465862132
-      MAGE_32: 1029622398
-      MAGE_33: 754414643
-      MAGE_34: -96887990
-      MAGE_35: 1296341552
-      MAGE_36: -671071975
       MAGE_37: 1126448435
-      MAGE_38: -1472987458
-      MAGE_39: -10937320
-      MAGE_40: 1646861999
-      MAGE_41: -1885781848
-      MAGE_42: 191995295
       MAGE_43: -1365421098
       MAGE_44: -1130161322
-      MAGE_45: 1992896458
-      MAGE_46: 229421417
       MAGE_47: -1253967525
-      MAGE_48: 221447477
       MAGE_49: 2021901432
       MAGE_50: 366009249
       MAGE_51: 350380537
@@ -1485,16 +1470,7 @@ TextureImporter:
       MAGE_63: 1281868227
       MAGE_64: -229034606
       MAGE_65: -696701377
-      MAGE_66: -170259912
-      MAGE_67: -893739083
-      MAGE_68: 1002992754
-      MAGE_69: 129362242
-      MAGE_70: 1882128656
-      MAGE_71: -2091443471
-      MAGE_72: 940644292
       MAGE_73: 1874545776
-      MAGE_74: -588490318
-      MAGE_75: 797376700
       MAGE_76: -1253033685
       MAGE_77: 785665876
       MAGE_78: 1790783242
@@ -1515,6 +1491,18 @@ TextureImporter:
       MAGE_92: -1293056279
       MAGE_93: -1014185022
       MAGE_94: 607954873
+      MAGE_attack_0: -1472987458
+      MAGE_attack_1: -10937320
+      MAGE_attack_2: 1646861999
+      MAGE_attack_3: -1885781848
+      MAGE_attack_4: 191995295
+      MAGE_attack_5: 1992896458
+      MAGE_attack_6: 221447477
+      MAGE_attack_7: 229421417
+      MAGE_fire_0: -2091443471
+      MAGE_fire_1: 940644292
+      MAGE_fire_2: -588490318
+      MAGE_fire_3: 797376700
       MAGE_idle_0: -1245157911
       MAGE_idle_1: 168880881
       MAGE_idle_2: -572738027
@@ -1523,6 +1511,18 @@ TextureImporter:
       MAGE_idle_5: -1965180888
       MAGE_idle_6: 1037667719
       MAGE_idle_7: -189174391
+      MAGE_jump_0: -170259912
+      MAGE_jump_1: -893739083
+      MAGE_jump_2: 1002992754
+      MAGE_jump_3: 129362242
+      MAGE_jump_4: 1882128656
+      MAGE_mage_run4: -96887990
+      MAGE_run2: 1029622398
+      MAGE_run3: 754414643
+      MAGE_run5: 1296341552
+      MAGE_run6: -671071975
+      MAGE_run_0: -1856757166
+      MAGE_run_1: 1465862132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
