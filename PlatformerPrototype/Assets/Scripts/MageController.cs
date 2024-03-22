@@ -14,24 +14,22 @@ public class MageController : MonoBehaviour
     private float airSpeed = 7.5f;
     [SerializeField]
     private float jumpForce = 10.8f;
-    [SerializeField]
-    private bool projectileFired = false;
-    [SerializeField]
-    private bool attack2Performed = false;
+    
+    
     //Components 
     Rigidbody2D rbMage;
     Animator animator;
-
+    
+    //Check enviroment contact directions
     EnvironmentData contact;
 
 
     private bool _isRunning = false;
     private bool _isFacingRight = true;
+    
+
     private bool _canMove = true;
 
-    //Projectile
-    public MagicProjectileController magicProjectile;
-    public Transform firePoint;
     public bool IsRunning
     {
         get { return _isRunning; }
@@ -42,6 +40,7 @@ public class MageController : MonoBehaviour
         }
 
     }
+    
     public bool IsFacingRight
     {
         get { return _isFacingRight; }
@@ -58,6 +57,7 @@ public class MageController : MonoBehaviour
 
     }
 
+
     public bool CanMove 
     {
         get { return _canMove; }
@@ -72,15 +72,10 @@ public class MageController : MonoBehaviour
     public void OnFire1AnimationExit() 
     {
         CanMove = true;
-        projectileFired = false;
+        
         Debug.Log("On Exit called fire1");
     }
-    public void OnFire2AnimationExit()
-    {
-        CanMove = true;
-        attack2Performed = false;
-        Debug.Log("On Exit called fire2");
-    }
+   
 
     private void Awake()
     {
@@ -95,6 +90,9 @@ public class MageController : MonoBehaviour
     {
         rbMage.gravityScale = 2f;
     }
+
+    //Function to flip the gameObject
+    /*
     private void SetSpriteOrientation(float velocityX)
     {
         if (velocityX > 0 && !IsFacingRight)
@@ -107,23 +105,48 @@ public class MageController : MonoBehaviour
         }
 
     }
+    */
+    private void ConfigureGravityScale() 
+    {
+        //Set Jump style
+        if (rbMage.velocity.y > 0)
+        {
+            rbMage.gravityScale = 1.4f; //jump start 
+        }
+        else if (rbMage.velocity.y < 0)
+        {
+            rbMage.gravityScale = 6f; //force rapid returnal speed
+        }
+        else rbMage.gravityScale = 2f; //reset default value
 
 
-   
+    }
+
+    private void Jump() 
+    {
+        rbMage.velocity = new(rbMage.velocity.x, jumpForce);
+    }
     // Update is called once per frame
     void Update()
     {
+        float speed;
+        input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
+        Vector2 inputNormalized = input.normalized;
 
         if (CanMove) 
-        {
-            float speed;
-            input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
-            Vector2 inputNormalized = input.normalized;
-
+        {  
+            
             if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
             else speed = airSpeed * inputNormalized.x;
 
-
+            if (inputNormalized.x > 0f)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else if (inputNormalized.x < 0f) 
+            {
+                transform.localScale = new Vector3(-1f,1f,1f);
+            }
 
             //  Debug.Log("Current speed: " + speed);
             rbMage.velocity = new(speed, rbMage.velocity.y);
@@ -137,62 +160,22 @@ public class MageController : MonoBehaviour
             {
                 IsRunning = false;
             }
-
-            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
-            {
-
-                rbMage.velocity = new(rbMage.velocity.x, jumpForce);
-
-            }
-
-            //Set Jump style
-            if (rbMage.velocity.y > 0)
-            {
-                rbMage.gravityScale = 1.4f; //jump start 
-            }
-            else if (rbMage.velocity.y < 0)
-            {
-                rbMage.gravityScale = 6f; //force rapid returnal speed
-            }
-            else rbMage.gravityScale = 2f; //reset default value
+            
+            //Prevent player glued on the wall
 
             if (contact.HitWall && !contact.TouchGround)
             {
                 rbMage.velocity = new(0, rbMage.velocity.y);
-
             }
-            //To do, sync animation with projectile instaniate
-            if (Input.GetButton(InputFields.Fire1) && contact.TouchGround &&!projectileFired) 
+            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
             {
-                //Instantiate Magic Projectile
-                Instantiate(magicProjectile, firePoint.position, firePoint.rotation).projectileDirection = new Vector2(transform.localScale.x, 0f);
-                //Dectivate movement during fire anim
-                CanMove = false;
-                projectileFired = true;
-                //Play Fire1 Animation
-                animator.SetTrigger(MageAnimStrings.fire1Trigger);
+                Jump();
             }
-            /* Contains bugs toDo, lock move 
-             * if (Input.GetButton(InputFields.Fire2) && contact.TouchGround && !attack2Performed) 
-            { 
-                CanMove = false;
-                attack2Performed = true;
-
-                animator.SetTrigger(MageAnimStrings.fire2Trigger);
-            
-            }*/
-
+            ConfigureGravityScale();
 
         }
 
-        SetSpriteOrientation(rbMage.velocity.x);
-
-
-
-
-
-
-
+       
 
 
 

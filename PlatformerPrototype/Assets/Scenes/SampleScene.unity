@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 809641648}
   - component: {fileID: 809641647}
   - component: {fileID: 809641646}
+  - component: {fileID: 809641650}
   - component: {fileID: 809641649}
   m_Layer: 6
   m_Name: MageCharacter
@@ -530,10 +531,6 @@ MonoBehaviour:
   runningSpeed: 8
   airSpeed: 7.5
   jumpForce: 10.8
-  projectileFired: 0
-  attack2Performed: 0
-  magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
-  firePoint: {fileID: 679818186}
 --- !u!50 &809641647
 Rigidbody2D:
   serializedVersion: 4
@@ -625,6 +622,22 @@ MonoBehaviour:
   groundDst: 0.1
   wallDst: 0.2
   ceilingDst: 0.08
+--- !u!114 &809641650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809641642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a534079abb4be744b5abb7c7309d592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTime: 1
+  mageFire1AnimTime: 0.44
+  firePoint: {fileID: 0}
+  magicProjectile: {fileID: 0}
 --- !u!1 &1116291707
 GameObject:
   m_ObjectHideFlags: 0
