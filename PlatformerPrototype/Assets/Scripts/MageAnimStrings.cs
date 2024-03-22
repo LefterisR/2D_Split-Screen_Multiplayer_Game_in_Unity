@@ -10,6 +10,7 @@ internal class MageAnimStrings
     internal static string isRunning = "isRunning";
     internal static string isGrounded = "isGrounded";
     internal static string yVelocity = "yVelocity";
-    //internal static string jumpTrigger = "jumpTrigger";
+    internal static string fire1Trigger = "fire1Trigger";
+    internal static string fire2Trigger = "fire2Trigger";
 }
 

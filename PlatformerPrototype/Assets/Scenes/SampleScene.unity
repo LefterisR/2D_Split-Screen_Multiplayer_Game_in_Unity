@@ -373,6 +373,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &679818185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679818186}
+  m_Layer: 6
+  m_Name: FirePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &679818186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679818185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.741, y: 0.009, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 809641645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809641642
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +419,7 @@ GameObject:
   - component: {fileID: 809641647}
   - component: {fileID: 809641646}
   - component: {fileID: 809641649}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MageCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +511,8 @@ Transform:
   m_LocalPosition: {x: -2.5, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 679818186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &809641646
@@ -498,6 +530,10 @@ MonoBehaviour:
   runningSpeed: 8
   airSpeed: 7.5
   jumpForce: 10.8
+  projectileFired: 0
+  attack2Performed: 0
+  magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
+  firePoint: {fileID: 679818186}
 --- !u!50 &809641647
 Rigidbody2D:
   serializedVersion: 4
@@ -586,7 +622,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDst: 0.08
+  groundDst: 0.1
   wallDst: 0.2
   ceilingDst: 0.08
 --- !u!1 &1116291707
@@ -644,7 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604593648}
   - component: {fileID: 1604593647}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background_placeholder_tag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +770,7 @@ GameObject:
   - component: {fileID: 1993230061}
   m_Layer: 0
   m_Name: ForestBase
-  m_TagString: Untagged
+  m_TagString: SolidObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,7 +830,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
