@@ -23,11 +23,13 @@ public class MageCombatController : MonoBehaviour
     public MagicProjectileController magicProjectile;
 
     MageController mageController;
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
         mageController = GetComponent<MageController>();
+        
     }
     
     // Update is called once per frame
@@ -53,6 +55,9 @@ public class MageCombatController : MonoBehaviour
             Debug.Log(timeBetweenAttackCounter);
             timeBetweenAttackCounter -= Time.deltaTime;
             mageController.CanMove = false;
+            mageController.GetComponent<Rigidbody2D>().velocity= Vector3.zero;
+
+
         }
         //Must check if mage did not perform attack one => attackTime == 1
         

@@ -129,13 +129,14 @@ public class MageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed;
-        input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
-        Vector2 inputNormalized = input.normalized;
+        
 
         if (CanMove) 
-        {  
-            
+        {
+            float speed;
+            input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
+            Vector2 inputNormalized = input.normalized;
+
             if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
             else speed = airSpeed * inputNormalized.x;
 
