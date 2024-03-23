@@ -60,22 +60,16 @@ public class MageController : MonoBehaviour
 
     public bool CanMove 
     {
-        get { return _canMove; }
+        get { return animator.GetBool(MageAnimStrings.canMove); }
         set 
         {
-            _canMove = value;
+            _canMove = animator.GetBool(MageAnimStrings.canMove);
         
         }
     
     }
 
-    public void OnFire1AnimationExit() 
-    {
-        CanMove = true;
-        
-        Debug.Log("On Exit called fire1");
-    }
-   
+  
 
     private void Awake()
     {
