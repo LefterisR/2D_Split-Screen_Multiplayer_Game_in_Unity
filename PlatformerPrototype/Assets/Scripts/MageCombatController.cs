@@ -46,7 +46,7 @@ public class MageCombatController : MonoBehaviour
     {
         if (timeBetweenAttackCounter <= 0)
         {
-            mageController.CanMove = true;
+          
 
             if ( animator.GetBool(MageAnimStrings.canFire2) && Input.GetButton(InputFields.Fire2) && contact.TouchGround)
             {   
@@ -66,7 +66,7 @@ public class MageCombatController : MonoBehaviour
         {
            // Debug.Log(timeBetweenAttackCounter);
             timeBetweenAttackCounter -= Time.deltaTime;
-            mageController.CanMove = false;
+          
             mageController.GetComponent<Rigidbody2D>().velocity= Vector3.zero;
 
 
@@ -74,7 +74,7 @@ public class MageCombatController : MonoBehaviour
         //Must check if mage did not perform attack one => attackTime == 1
         if (timeBetweenShoots <= 0) 
         {
-            mageController.CanMove = true;
+           
 
             if(animator.GetBool(MageAnimStrings.canFire1) && Input.GetButton(InputFields.Fire1) && contact.TouchGround) 
             {
@@ -91,7 +91,7 @@ public class MageCombatController : MonoBehaviour
         {
            // Debug.Log(timeBetweenShoots);
             timeBetweenShoots -= Time.deltaTime;
-            mageController.CanMove = false;
+          
             mageController.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         }

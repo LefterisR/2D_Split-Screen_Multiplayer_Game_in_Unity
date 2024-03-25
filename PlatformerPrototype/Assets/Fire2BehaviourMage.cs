@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire1Behaviour : StateMachineBehaviour
+public class Fire2BehaviourMage : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(MageAnimStrings.canMove,false);
-        animator.SetBool(MageAnimStrings.canFire2, false);
+        animator.SetBool(MageAnimStrings.canMove, false);
+        animator.SetBool(MageAnimStrings.canFire1, false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,8 +21,7 @@ public class Fire1Behaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool(MageAnimStrings.canMove, true);
-        animator.SetBool(MageAnimStrings.canFire2, true);
-        
+        animator.SetBool(MageAnimStrings.canFire1, true);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
