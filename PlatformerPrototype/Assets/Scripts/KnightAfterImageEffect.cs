@@ -17,7 +17,7 @@ public class KnightAfterImageEffect : MonoBehaviour
     private float alphaSet = 0.8f;
     private float alphaMultiplier = 0.85f;
 
-    private float activeTime = 0.8f;
+    private float imageLifeTime = 1.5f;
     private float timeActivated; //After image life time counter
 
     private void OnEnable()
@@ -38,17 +38,12 @@ public class KnightAfterImageEffect : MonoBehaviour
 
     private void Update()
     {
-        alpha*=alphaMultiplier;
+        alpha *= alphaMultiplier;
 
         color = new Color(1f, 1f, 1f, alpha); //RGBA
 
         spriteRender.color = color; //Set color to the after image
 
-        if (Time.time >= (timeActivated + activeTime)) 
-        {
-            KnightAfterImagePool.Instance.AddToPool(gameObject);
-        
-        }
     }
 
 

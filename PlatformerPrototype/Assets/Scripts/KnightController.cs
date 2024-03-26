@@ -14,33 +14,36 @@ public class KnightController : MonoBehaviour
     [SerializeField]
     private float jumpForce = 12f;
     [SerializeField]
+
     [Header("Dash")]
     private float dashSpeed = 25f;
     [SerializeField]
     private float dashTime = 0.5f;
     [SerializeField]
-    private float distanceBetweenImages = 0.05f;
+    private float distanceBetweenImages = 0.2f;
     [SerializeField]
     private float dashCooldown= 2f;
-    [SerializeField]
-    private float dashRechargeCounter = 0f;
 
-    private float dashTimeLeft;
-    private float lastAfterImagePos;
-    private float lastDash = -999f;
+    [Header("Dash After Image Effect")]
+    [SerializeField]
+    private float imageLifeTime = 1.4f;
+    public SpriteRenderer afterImage;
+    
+
+    private float dashRechargeCounter = 0f; //Dash ability cooldown character
+    private float dashTimeLeft;             //Dashing frames counter
+    private float lastAfterImagePos;        //Location of the last image of after affect X axis
+   
 
     //Components 
     Rigidbody2D rbKnight;
     Animator animator;
-
+    SpriteRenderer knightSpriteRenderer;
     //Check enviroment contact directions
     EnvironmentData contact;
 
-    private bool isDashing;
     private bool _isRunning = false;
     private bool _isFacingRight = true;
-
-
     private bool _canMove = true;
 
     public bool IsRunning
@@ -90,6 +93,7 @@ public class KnightController : MonoBehaviour
         rbKnight = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
+        knightSpriteRenderer = GetComponent<SpriteRenderer>();
 
     }
     // Start is called before the first frame update
@@ -121,19 +125,29 @@ public class KnightController : MonoBehaviour
         rbKnight.velocity = new(rbKnight.velocity.x, jumpForce);
     }
 
-    
+    private void AfterImageEffect() 
+    {
+        SpriteRenderer image = Instantiate(afterImage, transform.position, transform.rotation);
+        image.sprite = knightSpriteRenderer.sprite;
+        image.transform.localScale = knightSpriteRenderer.transform.localScale;
+        image.color = new Color(1f, 1f, 1f, 0.75f); //RBGA
+
+        Destroy(image.gameObject,imageLifeTime);
+
+        
+    }
 
     // Update is called once per frame
 
     void Update()
     {
-
+        float speed;
+        input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
+        Vector2 inputNormalized = input.normalized;
 
         if (CanMove)
         {
-            float speed;
-            input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
-            Vector2 inputNormalized = input.normalized;
+            
 
             if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
             else speed = airSpeed * inputNormalized.x;
@@ -172,15 +186,14 @@ public class KnightController : MonoBehaviour
             }
             ConfigureGravityScale();
 
-
             if (dashRechargeCounter <= 0)
             {
                 if (Input.GetButton(InputFields.Fire2))
                 {
                     dashRechargeCounter = dashCooldown;
                     dashTimeLeft = dashTime;
-                    //KnightAfterImagePool.Instance.GetFromPool();
-                  //  lastAfterImagePos = transform.position.x;
+                    AfterImageEffect();
+                    lastAfterImagePos = transform.position.x;
                 }
             }
             else 
@@ -193,13 +206,14 @@ public class KnightController : MonoBehaviour
             {
                 dashTimeLeft -= Time.deltaTime;
                 rbKnight.velocity = new(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
-                /* if (Mathf.Abs(transform.position.x - lastAfterImagePos) > 0) 
+                if (Mathf.Abs(transform.position.x - lastAfterImagePos) > distanceBetweenImages) 
                 {
-                    KnightAfterImagePool.Instance.GetFromPool();
+                    AfterImageEffect();
                     lastAfterImagePos = transform.position.x;
-                }*/
+                }
 
             }
+
 
 
 
