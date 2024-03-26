@@ -13,7 +13,21 @@ public class KnightController : MonoBehaviour
     private float airSpeed = 8f;
     [SerializeField]
     private float jumpForce = 12f;
+    [SerializeField]
+    [Header("Dash")]
+    private float dashSpeed = 25f;
+    [SerializeField]
+    private float dashTime = 0.5f;
+    [SerializeField]
+    private float distanceBetweenImages = 0.05f;
+    [SerializeField]
+    private float dashCooldown= 2f;
+    [SerializeField]
+    private float dashRechargeCounter = 0f;
 
+    private float dashTimeLeft;
+    private float lastAfterImagePos;
+    private float lastDash = -999f;
 
     //Components 
     Rigidbody2D rbKnight;
@@ -22,7 +36,7 @@ public class KnightController : MonoBehaviour
     //Check enviroment contact directions
     EnvironmentData contact;
 
-
+    private bool isDashing;
     private bool _isRunning = false;
     private bool _isFacingRight = true;
 
@@ -106,7 +120,11 @@ public class KnightController : MonoBehaviour
     {
         rbKnight.velocity = new(rbKnight.velocity.x, jumpForce);
     }
+
+    
+
     // Update is called once per frame
+
     void Update()
     {
 
@@ -154,13 +172,40 @@ public class KnightController : MonoBehaviour
             }
             ConfigureGravityScale();
 
+
+            if (dashRechargeCounter <= 0)
+            {
+                if (Input.GetButton(InputFields.Fire2))
+                {
+                    dashRechargeCounter = dashCooldown;
+                    dashTimeLeft = dashTime;
+                    //KnightAfterImagePool.Instance.GetFromPool();
+                  //  lastAfterImagePos = transform.position.x;
+                }
+            }
+            else 
+            {
+                dashRechargeCounter -= Time.deltaTime;
+                Debug.Log("Dash under cooldown: " + dashRechargeCounter);
+            }
+
+            if (dashTimeLeft > 0)
+            {
+                dashTimeLeft -= Time.deltaTime;
+                rbKnight.velocity = new(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
+                /* if (Mathf.Abs(transform.position.x - lastAfterImagePos) > 0) 
+                {
+                    KnightAfterImagePool.Instance.GetFromPool();
+                    lastAfterImagePos = transform.position.x;
+                }*/
+
+            }
+
+
+
+
+
         }
-
-
-
-
-
-
 
     }
 }

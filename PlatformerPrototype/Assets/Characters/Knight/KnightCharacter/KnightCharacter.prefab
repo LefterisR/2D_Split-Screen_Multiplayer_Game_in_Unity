@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2331708192203774778}
   m_Layer: 0
   m_Name: KnightCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +35,8 @@ Transform:
   m_LocalPosition: {x: -3.8486135, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4023106985587618398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5417183858425740466
@@ -217,6 +218,11 @@ MonoBehaviour:
   runningSpeed: 8
   airSpeed: 7.5
   jumpForce: 10.8
+  dashSpeed: 25
+  dashTime: 0.4
+  distanceBetweenImages: 0.5
+  dashCooldown: 2
+  dashRechargeCounter: 0
 --- !u!114 &2331708192203774778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,10 +236,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTime: 0.82
-  dashCooldown: 4
-  dashTime: 0.3
-  dashSpeed: 20
-  afterImage: {fileID: 5417183858425740466}
-  knightSprite: {fileID: 5417183858425740466}
-  afterImageTime: 0.28
-  afterImageTimeInterval: 0.04
+--- !u!1001 &287889470018149805
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2603898722462773711}
+    m_Modifications:
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1805384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.48915547
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.022719158
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011230024063711413, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+      propertyPath: m_Name
+      value: KnightAfterImagePool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+--- !u!4 &4023106985587618398 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3758882321849544691, guid: 3bf38aaf918716a49bebb55a03e1e335, type: 3}
+  m_PrefabInstance: {fileID: 287889470018149805}
+  m_PrefabAsset: {fileID: 0}
