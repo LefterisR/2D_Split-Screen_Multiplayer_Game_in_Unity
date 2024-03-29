@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class CharacterManager : MonoBehaviour
 
     private int _selectedOption = 0; //ALWAYS INITIALIZED
 
+    private int currentSceneIndex;
     void Start()
     {
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         UpdateCharacter(_selectedOption);
     }
 
@@ -52,5 +55,16 @@ public class CharacterManager : MonoBehaviour
         nameTxt.text = character.Name;
     }
     
+    public void SelectCharacter() 
+    {
+        PlayerPrefs.SetInt("selectedOption",_selectedOption);
+        StartCoroutine(LoadNextSceneDelayed());
+    }
 
+    IEnumerator LoadNextSceneDelayed()
+    {
+        yield return new WaitForSeconds(0.4f);
+        SceneManager.LoadScene(currentSceneIndex + 1); //Character Selection index 1
+    }
+   
 }

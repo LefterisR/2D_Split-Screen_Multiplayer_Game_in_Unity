@@ -17,4 +17,9 @@ public class CharacterDatabase :ScriptableObject
         return character[index];
     }
 
+    public GameObject GetCharacterPrefab(int index) 
+    {
+        return character[index].characterEntity;
+    }
+
 }
