@@ -108,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1738596001
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1245157911, guid: b87634b1da57966408743f69691c5867, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeAttackTime: 1
-  fire1AnimTime: 0.44
   shootAttackTime: 0.8
   firePoint: {fileID: 5163269828282685472}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}

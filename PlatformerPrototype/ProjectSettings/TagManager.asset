@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 794877545
+    locked: 0
+  - name: Trees
+    uniqueID: 2247605221
+    locked: 0
+  - name: Props
+    uniqueID: 1731255677
+    locked: 0
+  - name: Tiles
+    uniqueID: 4156342805
+    locked: 0
+  - name: Characters
+    uniqueID: 1738596001
+    locked: 0
