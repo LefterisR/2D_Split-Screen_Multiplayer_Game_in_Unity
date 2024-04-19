@@ -9,13 +9,27 @@ public class MageController : MonoBehaviour
     private Vector2 input = new(0, 0);
 
     [SerializeField]
-    private float runningSpeed = 8f;
+    private float runningSpeed = 7.5f;
+    [SerializeField]
+    private float baseSpeed = 7.5f;
+    [SerializeField]
+    private float maxSpeed = 16f;
+    [SerializeField]
+    private float accelerationPace = 0.25f;
     [SerializeField]
     private float airSpeed = 7.5f;
+
+    [Header("Jump Data")]
     [SerializeField]
-    private float jumpForce = 10.8f;
-    
-    
+   // [Range(1,12)]
+    private float jumpVelocity = 10;
+    [SerializeField]
+    private float descMultiplier = 2.55f;
+    [SerializeField]
+    private float ascendMultiplier = 2f;
+   
+
+
     //Components 
     Rigidbody2D rbMage;
     Animator animator;
@@ -23,12 +37,12 @@ public class MageController : MonoBehaviour
     //Check enviroment contact directions
     EnvironmentData contact;
 
-
     private bool _isRunning = false;
     private bool _isFacingRight = true;
-    
 
+   
     private bool _canMove = true;
+    
 
     public bool IsRunning
     {
@@ -69,7 +83,7 @@ public class MageController : MonoBehaviour
     
     }
 
-  
+
 
     private void Awake()
     {
@@ -82,72 +96,61 @@ public class MageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rbMage.gravityScale = 2f;
+
     }
 
-    //Function to flip the gameObject
-    /*
-    private void SetSpriteOrientation(float velocityX)
+
+    private void IncreaseSpeed(float pace)
     {
-        if (velocityX > 0 && !IsFacingRight)
-        {
-            IsFacingRight = true;
-        }
-        else if (velocityX < 0 && IsFacingRight)
-        {
-            IsFacingRight = false;
-        }
-
-    }
-    */
-    private void ConfigureGravityScale() 
-    {
-        //Set Jump style
-        if (rbMage.velocity.y > 0)
-        {
-            rbMage.gravityScale = 1.4f; //jump start 
-        }
-        else if (rbMage.velocity.y < 0)
-        {
-            rbMage.gravityScale = 6f; //force rapid returnal speed
-        }
-        else rbMage.gravityScale = 2f; //reset default value
-
-
+        runningSpeed += pace;
     }
 
-    private void Jump() 
-    {
-        rbMage.velocity = new(rbMage.velocity.x, jumpForce);
-    }
+
     // Update is called once per frame
     void Update()
     {
         
 
-        if (CanMove) 
+        if (CanMove)
         {
-            float speed;
+            //Get Input Direction
+
             input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
             Vector2 inputNormalized = input.normalized;
 
-            if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
-            else speed = airSpeed * inputNormalized.x;
+            //Ground
+
+            if (inputNormalized.x!=Mathf.Epsilon && contact.TouchGround)
+            {
+                if (runningSpeed<maxSpeed) IncreaseSpeed(accelerationPace);
+            }
+            else 
+            {
+                runningSpeed = baseSpeed;
+            }           
+            Debug.Log("Current speed: " + runningSpeed);
+            rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
+
+            //Air 
+            if (!contact.TouchGround)
+            {
+                runningSpeed = airSpeed ;
+                rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
+            }
 
             if (inputNormalized.x > 0f)
             {
                 transform.localScale = Vector3.one;
             }
-            else if (inputNormalized.x < 0f) 
+            else if (inputNormalized.x < 0f)
             {
-                transform.localScale = new Vector3(-1f,1f,1f);
+
+                transform.localScale = new Vector3(-1f, 1f, 1f);
             }
 
-            //  Debug.Log("Current speed: " + speed);
-            rbMage.velocity = new(speed, rbMage.velocity.y);
             animator.SetFloat(MageAnimStrings.yVelocity, rbMage.velocity.y);
 
-            if (rbMage.velocity != Vector2.zero)
+            if (rbMage.velocity.x != 0)
             {
                 IsRunning = true;
             }
@@ -155,26 +158,44 @@ public class MageController : MonoBehaviour
             {
                 IsRunning = false;
             }
-            
+
             //Prevent player glued on the wall
 
             if (contact.HitWall && !contact.TouchGround)
             {
                 rbMage.velocity = new(0, rbMage.velocity.y);
             }
-            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
+
+            if (Input.GetButtonDown(InputFields.Jump) && contact.TouchGround)
             {
-                Jump();
+                //Create momentum illusion
+                Debug.Log("Space pressed");
+                //rbMage.velocity = Vector2.up * jumpVelocity;
+                rbMage.velocity = new(0, jumpVelocity);
             }
-            ConfigureGravityScale();
+
+            if (rbMage.velocity.y < 0)
+            {
+                rbMage.velocity += (descMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+            }
+            else if (rbMage.velocity.y > 0)
+            {
+                rbMage.velocity += (ascendMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+            }
 
         }
 
-       
+
 
 
 
 
 
     }
+
+   
+    
+   
+    
+
 }

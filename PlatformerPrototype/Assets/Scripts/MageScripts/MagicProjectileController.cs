@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Rendering.Universal;
 
 public class MagicProjectileController : MonoBehaviour
 {
@@ -13,11 +16,19 @@ public class MagicProjectileController : MonoBehaviour
     public GameObject impactEffect;
     
     private Rigidbody2D rb;
-    private new Collider2D collider2D;
+    private Light2D projectileLight;
+    
+    private const float lightPulseClock = 1.6f;
+    private float _pulseCounter = lightPulseClock;
+
+    private readonly float _highIntensity = 2f;
+
+    private readonly float _lowIntensity = 0.7f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider2D = GetComponent<Collider2D>();
+        projectileLight = GetComponent<Light2D>();
     }
     // Start is called before the first frame update
 
@@ -54,6 +65,26 @@ public class MagicProjectileController : MonoBehaviour
     void Update()
     {
         rb.velocity = projectileDirection * projectileSpeed;
+
+
+        if (_pulseCounter >= 0.8)
+        {
+            projectileLight.intensity = _highIntensity;
+            _pulseCounter -= Time.deltaTime;
+        }
+        else if (_pulseCounter > 0 && _pulseCounter < 0.8)
+        {
+            projectileLight.intensity = _lowIntensity;
+            _pulseCounter -= Time.deltaTime;
+        }
+        else if (_pulseCounter <= 0) 
+        {
+            projectileLight.intensity = _highIntensity;
+            _pulseCounter -= lightPulseClock;
+        }
+
+        Debug.Log(projectileLight.intensity);
+    
     }
 
     

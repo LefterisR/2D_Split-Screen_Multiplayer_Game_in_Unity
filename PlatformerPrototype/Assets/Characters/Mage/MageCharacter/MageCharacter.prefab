@@ -203,7 +203,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &5521347714386337171
 MonoBehaviour:
@@ -217,9 +217,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf561bba3f7fc4f4fb516b7d1a2d2afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningSpeed: 8
-  airSpeed: 7.5
-  jumpForce: 10.8
+  runningSpeed: 8.5
+  baseSpeed: 8.5
+  maxSpeed: 16.5
+  accelerationPace: 0.25
+  airSpeed: 10
+  jumpVelocity: 40
+  descMultiplier: 1.2
+  ascendMultiplier: 1.09
 --- !u!114 &3067148869597424280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,5 +268,5 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   groundDst: 0.1
-  wallDst: 0.2
+  wallDst: 0.1
   ceilingDst: 0.08

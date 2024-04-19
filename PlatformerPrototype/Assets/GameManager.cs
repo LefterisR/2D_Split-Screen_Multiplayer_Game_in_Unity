@@ -22,13 +22,19 @@ public class GameManager : MonoBehaviour
         
         _activePlayer = Instantiate(selectedCharacter,spawnPoint.position,spawnPoint.rotation);
     }
-    
+
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
     void Start()
     {
         confirmedPlayerChoice = PlayerPrefs.GetInt("selectedOption");
         LoadCharacterToScene(confirmedPlayerChoice);
 
         virtualCamera.Follow = _activePlayer.transform;
+
+        
 
     }
 

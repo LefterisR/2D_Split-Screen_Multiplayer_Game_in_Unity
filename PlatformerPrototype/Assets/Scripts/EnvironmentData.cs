@@ -9,6 +9,8 @@ public class EnvironmentData : MonoBehaviour
     public float groundDst = 0.08f;
     public float wallDst = 0.2f;
     public float ceilingDst = 0.08f;
+    
+   
 
     //Entity object
     private CapsuleCollider2D entityCollider;
@@ -73,6 +75,8 @@ public class EnvironmentData : MonoBehaviour
         }
        */
         TouchGround = entityCollider.Cast(Vector2.down, contactFilter, groundRaycastHit, groundDst) > 0;
+        
+
         HitWall = entityCollider.Cast(WallDirection, contactFilter, wallRaycastHit, wallDst) > 0;
         TouchCeiling = entityCollider.Cast(Vector2.up, contactFilter, ceilingRaycastHit, ceilingDst) > 0;
     }
