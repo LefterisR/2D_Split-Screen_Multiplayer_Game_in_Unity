@@ -105,6 +105,17 @@ public class MageController : MonoBehaviour
         runningSpeed += pace;
     }
 
+    private void FixedUpdate()
+    {
+        if (input.x != 0 && contact.TouchGround)
+        {
+            if (runningSpeed < maxSpeed) IncreaseSpeed(accelerationPace);
+        }
+        else
+        {
+            runningSpeed = baseSpeed;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -120,14 +131,7 @@ public class MageController : MonoBehaviour
 
             //Ground
 
-            if (inputNormalized.x!=Mathf.Epsilon && contact.TouchGround)
-            {
-                if (runningSpeed<maxSpeed) IncreaseSpeed(accelerationPace);
-            }
-            else 
-            {
-                runningSpeed = baseSpeed;
-            }           
+                   
             Debug.Log("Current speed: " + runningSpeed);
             rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
 
