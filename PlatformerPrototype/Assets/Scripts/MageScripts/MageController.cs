@@ -107,50 +107,40 @@ public class MageController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (input.x != 0 && contact.TouchGround)
-        {
-            if (runningSpeed < maxSpeed) IncreaseSpeed(accelerationPace);
-        }
-        else
-        {
-            runningSpeed = baseSpeed;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
         if (CanMove)
-        {
-            //Get Input Direction
-
+        {   //Get Input Direction
             input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
             Vector2 inputNormalized = input.normalized;
 
             //Ground
+            if (inputNormalized.x != 0 && contact.TouchGround)
+            {
+                if (runningSpeed < maxSpeed) IncreaseSpeed(accelerationPace);
+            }
+            else
+            {
+                runningSpeed = baseSpeed;
+            }
 
-                   
             Debug.Log("Current speed: " + runningSpeed);
             rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
 
             //Air 
             if (!contact.TouchGround)
             {
-                runningSpeed = airSpeed ;
+                runningSpeed = airSpeed;
                 rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
             }
 
-            if (inputNormalized.x > 0f)
+            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
             {
-                transform.localScale = Vector3.one;
+                //Create momentum illusion
+                Debug.Log("Space pressed");
+                //rbMage.velocity = Vector2.up * jumpVelocity;
+                rbMage.velocity = new(0, jumpVelocity);
             }
-            else if (inputNormalized.x < 0f)
-            {
 
-                transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
+            
 
             animator.SetFloat(MageAnimStrings.yVelocity, rbMage.velocity.y);
 
@@ -165,41 +155,46 @@ public class MageController : MonoBehaviour
 
             //Prevent player glued on the wall
 
+           
+
+        }
+
+        if (rbMage.velocity.y < 0 && !contact.TouchGround)
+        {
+            rbMage.velocity += (descMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+        }
+        else if (rbMage.velocity.y > 0 && !contact.TouchGround)
+        {
+            rbMage.velocity += (ascendMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (input.x > 0f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (input.x < 0f)
+        {
+
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+
+        if (CanMove)
+        {
             if (contact.HitWall && !contact.TouchGround)
             {
                 rbMage.velocity = new(0, rbMage.velocity.y);
             }
 
-            if (Input.GetButtonDown(InputFields.Jump) && contact.TouchGround)
-            {
-                //Create momentum illusion
-                Debug.Log("Space pressed");
-                //rbMage.velocity = Vector2.up * jumpVelocity;
-                rbMage.velocity = new(0, jumpVelocity);
-            }
-
-            if (rbMage.velocity.y < 0)
-            {
-                rbMage.velocity += (descMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
-            }
-            else if (rbMage.velocity.y > 0)
-            {
-                rbMage.velocity += (ascendMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
-            }
-
         }
-
-
-
-
-
 
 
     }
 
-   
-    
-   
-    
+
 
 }

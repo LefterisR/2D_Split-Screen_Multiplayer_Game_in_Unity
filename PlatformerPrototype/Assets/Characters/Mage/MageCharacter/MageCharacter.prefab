@@ -222,9 +222,9 @@ MonoBehaviour:
   maxSpeed: 16.5
   accelerationPace: 0.25
   airSpeed: 10
-  jumpVelocity: 40
-  descMultiplier: 1.2
-  ascendMultiplier: 1.09
+  jumpVelocity: 30
+  descMultiplier: 1.4
+  ascendMultiplier: 1.1
 --- !u!114 &3067148869597424280
 MonoBehaviour:
   m_ObjectHideFlags: 0
