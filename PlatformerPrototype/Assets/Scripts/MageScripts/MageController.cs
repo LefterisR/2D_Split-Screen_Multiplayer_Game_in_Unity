@@ -21,7 +21,6 @@ public class MageController : MonoBehaviour
 
     [Header("Jump Data")]
     [SerializeField]
-   // [Range(1,12)]
     private float jumpVelocity = 10;
     [SerializeField]
     private float descMultiplier = 2.55f;
@@ -32,6 +31,7 @@ public class MageController : MonoBehaviour
 
     //Components 
     Rigidbody2D rbMage;
+    PhysicsMaterial2D physicsMaterial;
     Animator animator;
     
     //Check enviroment contact directions
@@ -89,6 +89,7 @@ public class MageController : MonoBehaviour
     {
         //Retrive Components
         rbMage = GetComponent<Rigidbody2D>();
+        physicsMaterial = GetComponent<Collider2D>().sharedMaterial;   
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
 
@@ -183,14 +184,22 @@ public class MageController : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
-        if (CanMove)
-        {
+        
             if (contact.HitWall && !contact.TouchGround)
             {
                 rbMage.velocity = new(0, rbMage.velocity.y);
+                physicsMaterial.friction=0;
+                
+                Debug.Log("On wall, friction set to +"+physicsMaterial.friction);
+            }
+            else 
+            {
+                physicsMaterial.friction=0.4f;
+                Debug.Log("On ground, friction set to +" + physicsMaterial.friction);
+               
             }
 
-        }
+        
 
 
     }

@@ -711,8 +711,8 @@ GameObject:
   - component: {fileID: 530613467}
   - component: {fileID: 530613466}
   - component: {fileID: 530613469}
-  m_Layer: 0
-  m_Name: HealthPosition
+  m_Layer: 8
+  m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1245,7 +1245,6 @@ Transform:
   - {fileID: 961427824}
   - {fileID: 1815650163}
   - {fileID: 819070625}
-  - {fileID: 1831852730}
   - {fileID: 330981829}
   - {fileID: 144076189}
   m_Father: {fileID: 0}
@@ -1398,11 +1397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.864944
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3600318
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2714,11 +2713,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 996399429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1831852730 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-  m_PrefabInstance: {fileID: 2692881622550311041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993230057
 GameObject:
   m_ObjectHideFlags: 0
@@ -5674,63 +5668,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066aca7286b539645a08e8a2c22a969a, type: 3}
---- !u!1001 &2692881622550311041
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 996399429}
-    m_Modifications:
-    - target: {fileID: 450452399656820965, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_Name
-      value: LampPostLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.134153
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.3260763
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.03896427
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8649996848146078773, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d4c8b7e2a6e35844fa23812f0769af61, type: 3}
 --- !u!1001 &3558271317980286177
 PrefabInstance:
   m_ObjectHideFlags: 0
