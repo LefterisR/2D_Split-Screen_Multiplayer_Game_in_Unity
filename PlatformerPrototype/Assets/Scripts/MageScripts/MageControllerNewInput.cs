@@ -30,8 +30,7 @@ public class MageControllerNewInput : MonoBehaviour
     [SerializeField]
     private float ascendMultiplier = 2f;
 
-    [SerializeField]
-    private string activeActionMap;
+    
 
     //Components 
     Rigidbody2D rbMage;
@@ -43,6 +42,8 @@ public class MageControllerNewInput : MonoBehaviour
     private PlayerInput playerInput;
     private InputActionAsset inputAsset;
     private InputActionMap player;
+    [SerializeField]
+    private string activeActionMap;
 
     //Actions
     private InputAction move;
@@ -101,7 +102,7 @@ public class MageControllerNewInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (IsGrounded() && CanMove)
         {
             rbMage.velocity = new(0, jumpVelocity);
         }
@@ -116,12 +117,18 @@ public class MageControllerNewInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Accelerate(userInput.x);
+
+        ImplementArcadeJumpPh();
+    }
+    // Update is called once per frame
+    void Update()
+    {
         if (CanMove)
         {
             userInput = move.ReadValue<Vector2>();
 
-            Accelerate(userInput.x);
-
+            
             rbMage.velocity = new(runningSpeed * userInput.x, rbMage.velocity.y);
 
             //Mage is on Air
@@ -133,7 +140,6 @@ public class MageControllerNewInput : MonoBehaviour
 
             Debug.Log("Current Mage Speed: " + runningSpeed);
 
-            ImplementArcadeJumpPh();
 
             animator.SetFloat(MageAnimStrings.yVelocity, rbMage.velocity.y);
 
@@ -147,10 +153,7 @@ public class MageControllerNewInput : MonoBehaviour
             }
 
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
+
         if (userInput.x > 0f)
         {
             transform.localScale = Vector3.one;
@@ -176,6 +179,10 @@ public class MageControllerNewInput : MonoBehaviour
         }
     }
 
+    public void SetActiveActionMap(string map) 
+    {
+        activeActionMap = map;
+    }
     private bool IsGrounded()
     {
         return contact.TouchGround;

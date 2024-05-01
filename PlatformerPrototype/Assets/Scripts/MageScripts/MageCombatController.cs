@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class MageCombatController : MonoBehaviour
 {
-    // Start is called before the first frame update
     Animator animator;
     EnvironmentData contact;
 
