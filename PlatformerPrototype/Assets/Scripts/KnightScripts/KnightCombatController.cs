@@ -1,49 +1,85 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KnightCombatController : MonoBehaviour
 {
     Animator animator;
     EnvironmentData contact;
-
     KnightController knightController;
-    Rigidbody2D rbKnight;
+    Rigidbody2D rb;
 
     [Header("Melee Attack")]
     [SerializeField]
     private float attackTime = 0.82f;
     private float timeBetweenMelee = 0f;
 
+    private PlayerInput playerInput;
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+
+    public string activeActionMap;
+
+    private bool _fire1Ready = true;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
         knightController = GetComponent<KnightController>();
-        rbKnight = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+
+        playerInput = GetComponent<PlayerInput>();
+        inputAsset = playerInput.actions;
+       player = inputAsset.FindActionMap(activeActionMap);
+
+    }
+    
+    private void OnEnable()
+    {
+        player.FindAction("Fire1").performed += Fire1;
+        player.FindAction("Fire1").Enable();
     }
 
-   
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        player.FindAction("Fire1").Disable();
+    }
+    private void Fire1(InputAction.CallbackContext context)
+    {
+        if (_fire1Ready && IsGrounded()) 
+        {
+            animator.SetTrigger(KnightAnimStrings.meleeAttackTrigger);
+            timeBetweenMelee = attackTime;
+        }
+    }
+
     void Update()
     {
         if (timeBetweenMelee <= 0)
         {
-            if (Input.GetButton(InputFields.Fire1) && contact.TouchGround)
-            {
-                animator.SetTrigger(KnightAnimStrings.meleeAttackTrigger);
-                timeBetweenMelee = attackTime;
-            }
-
+            _fire1Ready = true;
+            knightController.CanMove = true;
         }
         else 
         {
-            timeBetweenMelee-= Time.deltaTime;
-            Debug.Log("Time between melee:" + timeBetweenMelee);
-            rbKnight.velocity = Vector3.zero;
+            rb.velocity = Vector2.zero;
+            knightController.CanMove = false;
+
+            timeBetweenMelee -= Time.deltaTime;
+            _fire1Ready = false;
+            
+            
         }
-
-
     }
+
+
+    private bool IsGrounded() 
+    {
+        return contact.TouchGround;
+    }
+
+ 
 }

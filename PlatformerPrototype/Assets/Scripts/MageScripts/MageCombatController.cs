@@ -2,108 +2,128 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MageCombatController : MonoBehaviour
 {
     Animator animator;
     EnvironmentData contact;
+    Rigidbody2D rb;
+    MageController mageController;
 
     //Melee attack 
     [Header("Melee Attack")]
-    private float timeBetweenAttackCounter;
+    private float timeBetweenMelee=0;
     public float meleeAttackTime = 1f;
-   
+    private bool _fire1Ready = true;
+
     //Range attack 
     [Header("Range Attack")]
-    //[SerializeField] private float fire1AnimTime = 0.44f;
-    private float timeBetweenShoots;
+    private float timeBetweenShoots=0;
     [SerializeField]
     private float shootAttackTime = 1f;
     public Transform firePoint;
     public MagicProjectileController magicProjectile;
+    private bool _fire2Ready = true;
 
-    MageController mageController;
 
+    //Input Handle
+    private PlayerInput playerInput;
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
 
+    public string activeActionMap;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
+
+        playerInput = GetComponent<PlayerInput>();
+        inputAsset = playerInput.actions;
+        player = inputAsset.FindActionMap(activeActionMap);
+
+        rb = GetComponent<Rigidbody2D>();
         mageController = GetComponent<MageController>();
-        
+
     }
-    
-    void OnFire1SpawnOrb() 
+   
+
+    private void OnEnable()
+    {   
+        player.FindAction("Fire1").started += Fire1;
+        player.FindAction("Fire1").Enable();
+
+        player.FindAction("Fire2").started += Fire2;
+        player.FindAction("Fire2").Enable();
+    }
+
+    private void OnDisable()
     {
-        Instantiate(magicProjectile, firePoint.position, firePoint.rotation).projectileDirection = new Vector2(transform.localScale.x, 0f);
+        player.FindAction("Fire1").Disable();
+        player.FindAction("Fire2").Disable();
+    }
+
+    private void Fire2(InputAction.CallbackContext context)
+    {
+        if (animator.GetBool(MageAnimStrings.canFire2) && IsGrounded() && _fire2Ready)
+        {
+            timeBetweenMelee = meleeAttackTime;
+            animator.SetTrigger(MageAnimStrings.fire2Trigger);
+        }
+    }
+
+    private void Fire1(InputAction.CallbackContext context)
+    {
+        if (animator.GetBool(MageAnimStrings.canFire1) && IsGrounded() && _fire1Ready) 
+        {
+            timeBetweenShoots = shootAttackTime;
+            animator.SetTrigger(MageAnimStrings.fire1Trigger);
+        }
+        Debug.Log("Clicked Pressed");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeBetweenAttackCounter <= 0)
-        {
-          
 
-            if ( animator.GetBool(MageAnimStrings.canFire2) && Input.GetButton(InputFields.Fire2) && contact.TouchGround)
-            {   
-               // Debug.Log("Fire2!");
-                animator.SetTrigger(MageAnimStrings.fire2Trigger);
-                timeBetweenAttackCounter = meleeAttackTime;
-                
-               // Debug.Log("Can move " + mageController.CanMove);
-                
-                
-            }
-           
-            
-             
+        if (timeBetweenShoots <= 0)
+        {
+            _fire1Ready = true;
+            mageController.CanMove = true;
         }
-        else
+        else 
         {
-           // Debug.Log(timeBetweenAttackCounter);
-            timeBetweenAttackCounter -= Time.deltaTime;
-          
-            mageController.GetComponent<Rigidbody2D>().velocity= Vector3.zero;
+            rb.velocity = Vector2.zero;
+            mageController.CanMove = false;
 
-
-        }
-        //Must check if mage did not perform attack one => attackTime == 1
-        if (timeBetweenShoots <= 0) 
-        {
-           
-
-            if(animator.GetBool(MageAnimStrings.canFire1) && Input.GetButton(InputFields.Fire1) && contact.TouchGround) 
-            {
-                //Debug.Log("Fire1!");
-                animator.SetTrigger(MageAnimStrings.fire1Trigger);
-                timeBetweenShoots = shootAttackTime;
-
-            }
-
-            
-
-        }
-        else
-        {
-           // Debug.Log(timeBetweenShoots);
+            _fire1Ready = false;
             timeBetweenShoots -= Time.deltaTime;
-          
-            mageController.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-
         }
 
+        if (timeBetweenMelee <= 0)
+        {
+            _fire2Ready = true;
+            mageController.CanMove = true;
+        }
+        else 
+        {
+            rb.velocity = Vector2.zero;
+            mageController.CanMove = false;
 
-
+            _fire2Ready = false;
+            timeBetweenMelee -= Time.deltaTime;
+        }
     }
 
-    /*
-     IEnumerator SpawnProjAtAnimExit()
+    private bool IsGrounded() 
     {
-        yield return new WaitForSeconds(fire1AnimTime);
-        Instantiate(magicProjectile, firePoint.position, firePoint.rotation).projectileDirection = new Vector2(transform.localScale.x,0f);
+        return contact.TouchGround;
     }
-     */
 
+  
+
+    public void OnFire1SpawnProjectile()
+    {
+        Instantiate(magicProjectile, firePoint.position, firePoint.rotation).projectileDirection = new Vector2(transform.localScale.x, 0f);
+    }
 }
-

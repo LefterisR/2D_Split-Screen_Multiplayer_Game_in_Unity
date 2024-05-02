@@ -1,51 +1,77 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms;
 
 public class KnightController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private Vector2 input = new(0, 0);
+    private Vector2 userInput = new(0, 0);
 
+    [Header("Movement Values")]
     [SerializeField]
-    private float runningSpeed = 8.5f;
+    private float runningSpeed = 9f;
     [SerializeField]
-    private float airSpeed = 8f;
+    private float baseSpeed = 9f;
     [SerializeField]
-    private float jumpForce = 12f;
+    private float maxSpeed = 18f;
     [SerializeField]
+    private float accelerationPace = 0.3f;
+    [SerializeField]
+    private float airSpeed = 10f;
+
+    [Header("Jump Data")]
+    [SerializeField]
+    private float jumpVelocity = 10;
+    [SerializeField]
+    private float descMultiplier = 1.1f;
+    [SerializeField]
+    private float ascendMultiplier = 1.4f;
 
     [Header("Dash")]
+    [SerializeField]
     private float dashSpeed = 25f;
     [SerializeField]
     private float dashTime = 0.5f;
     [SerializeField]
     private float distanceBetweenImages = 0.2f;
     [SerializeField]
-    private float dashCooldown= 2f;
+    private float dashCooldown = 2f;
 
     [Header("Dash After Image Effect")]
     [SerializeField]
     private float imageLifeTime = 1.4f;
     public SpriteRenderer afterImage;
-    
+
+
 
     private float dashRechargeCounter = 0f; //Dash ability cooldown character
-    private float dashTimeLeft;             //Dashing frames counter
-    private float lastAfterImagePos;        //Location of the last image of after affect X axis
-   
+    private float dashTimeLeft=0;             //Dashing frames counter
+    private float lastAfterImagePos;        //Location of the last image of after 
+    private bool _fire2Ready = true;
 
     //Components 
     Rigidbody2D rbKnight;
+    //PhysicsMaterial2D physicsMaterial;
     Animator animator;
-    SpriteRenderer knightSpriteRenderer;
-    //Check enviroment contact directions
     EnvironmentData contact;
+    SpriteRenderer knightSpriteRenderer;
+
+    //Input System
+    private PlayerInput playerInput;
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+
+    public string activeActionMap;
+    //Actions
+    private InputAction move;
 
     private bool _isRunning = false;
-    private bool _isFacingRight = true;
     private bool _canMove = true;
+//    private bool _isDashing = false;
 
+    //Bool Property Fields
     public bool IsRunning
     {
         get { return _isRunning; }
@@ -57,115 +83,112 @@ public class KnightController : MonoBehaviour
 
     }
 
-    public bool IsFacingRight
-    {
-        get { return _isFacingRight; }
-        set
-        {
-            if (_isFacingRight != value)
-            {
-                //flip
-                transform.localScale *= new Vector2(-1, 1);
-            }
-            _isFacingRight = value;
-
-        }
-
-    }
-
-
     public bool CanMove
     {
-        get { return animator.GetBool(KnightAnimStrings.canMove); }
+        get { return _canMove; }
         set
         {
-            _canMove = animator.GetBool(KnightAnimStrings.canMove);
+            _canMove = value;
+            animator.SetBool(KnightAnimStrings.canMove, value) ;
 
         }
 
     }
-
-
-
+    /*
+    public bool IsDashing 
+    {
+        get { return _isDashing; }
+        set 
+        {
+            _isDashing = value;
+        }
+    }
+    */
     private void Awake()
     {
-        //Retrive Components
+        playerInput = GetComponent<PlayerInput>();
+        inputAsset = playerInput.actions;
+        player = inputAsset.FindActionMap(activeActionMap);
+
         rbKnight = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
-        knightSpriteRenderer = GetComponent<SpriteRenderer>();
+    
+        knightSpriteRenderer = GetComponent<SpriteRenderer>();  
+    }
+   
+
+    private void OnEnable()
+    {
+        move = player.FindAction("Move");
+        move.Enable();
+
+        player.FindAction("Jump").started += DoJump; //Subscribe Function
+        player.FindAction("Jump").Enable();
+
+        player.FindAction("Fire2").started += Fire2;
+        player.FindAction("Fire2").Enable();
+
 
     }
-    // Start is called before the first frame update
-    void Start()
+    private void OnDisable()
     {
-        rbKnight.gravityScale = 2f;
+        move.Disable();
+        player.FindAction("Jump").Disable();
+        player.FindAction("Fire2").Disable();
     }
 
-    private void ConfigureGravityScale()
+    private void Fire2(InputAction.CallbackContext context)
     {
-        //Set Jump style
-        if (rbKnight.velocity.y > 0)
+        if (_fire2Ready) 
         {
-            rbKnight.gravityScale = 1.4f; //jump start 
-           // Debug.Log("Current Gravity: " + rbKnight.gravityScale);
+            //rbKnight.velocity = new Vector2(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
+
+            dashRechargeCounter = dashCooldown;
+            dashTimeLeft = dashTime;
+            AfterImageEffect();
+            lastAfterImagePos = transform.position.x;
+            
         }
-        else if (rbKnight.velocity.y < 0)
+    }
+
+ 
+
+    private void DoJump(InputAction.CallbackContext context)
+    {
+        if (IsGrounded())
         {
-           // Debug.Log("Current Gravity: "+rbKnight.gravityScale);
-            rbKnight.gravityScale = 6f; //force rapid returnal speed
+            rbKnight.velocity = new(0, jumpVelocity);
         }
-        else rbKnight.gravityScale = 2f; //reset default value
-        
-
     }
 
-    private void Jump()
+    private void FixedUpdate()
     {
-        rbKnight.velocity = new(rbKnight.velocity.x, jumpForce);
+        Accelerate(userInput.x);
+        ImplementArcadeJumpPh();
     }
-
-    private void AfterImageEffect() 
-    {
-        SpriteRenderer image = Instantiate(afterImage, transform.position, transform.rotation);
-        image.sprite = knightSpriteRenderer.sprite;
-        image.transform.localScale = knightSpriteRenderer.transform.localScale;
-        image.color = new Color(1f, 1f, 1f, 0.75f); //RBGA
-
-        Destroy(image.gameObject,imageLifeTime);
-
-        
-    }
-
     // Update is called once per frame
-
     void Update()
     {
-        float speed;
-        input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
-        Vector2 inputNormalized = input.normalized;
 
         if (CanMove)
         {
-            
+            userInput = move.ReadValue<Vector2>();
 
-            if (contact.TouchGround) speed = runningSpeed * inputNormalized.x;
-            else speed = airSpeed * inputNormalized.x;
+            rbKnight.velocity = new(runningSpeed * userInput.x, rbKnight.velocity.y);
 
-            if (inputNormalized.x > 0f)
+            FlipSprite(userInput.x);
+
+            if (!IsGrounded())  //On Air
             {
-                transform.localScale = Vector3.one;
-            }
-            else if (inputNormalized.x < 0f)
-            {
-                transform.localScale = new(-1f, 1f, 1f);
+                rbKnight.velocity = new(airSpeed * userInput.x, rbKnight.velocity.y);
             }
 
-            //  Debug.Log("Current speed: " + speed);
-            rbKnight.velocity = new(speed, rbKnight.velocity.y);
+            //Debug.Log("Current Knight Speed: " + runningSpeed);
+
             animator.SetFloat(KnightAnimStrings.yVelocity, rbKnight.velocity.y);
 
-            if (rbKnight.velocity != Vector2.zero)
+            if (rbKnight.velocity.x != 0)
             {
                 IsRunning = true;
             }
@@ -174,52 +197,96 @@ public class KnightController : MonoBehaviour
                 IsRunning = false;
             }
 
-            //Prevent player glued on the wall
-
-            if (contact.HitWall && !contact.TouchGround)
-            {
-                rbKnight.velocity = new(0, rbKnight.velocity.y);
-            }
-            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
-            {
-                Jump();
-            }
-            ConfigureGravityScale();
-
             if (dashRechargeCounter <= 0)
             {
-                if (Input.GetButton(InputFields.Fire2))
-                {
-                    dashRechargeCounter = dashCooldown;
-                    dashTimeLeft = dashTime;
-                    AfterImageEffect();
-                    lastAfterImagePos = transform.position.x;
-                }
+                _fire2Ready = true;
             }
-            else 
+            else
             {
+                _fire2Ready = false;
                 dashRechargeCounter -= Time.deltaTime;
-                Debug.Log("Dash under cooldown: " + dashRechargeCounter);
             }
-
-            if (dashTimeLeft > 0)
-            {
-                dashTimeLeft -= Time.deltaTime;
-                rbKnight.velocity = new(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
-                if (Mathf.Abs(transform.position.x - lastAfterImagePos) > distanceBetweenImages) 
-                {
-                    AfterImageEffect();
-                    lastAfterImagePos = transform.position.x;
-                }
-
-            }
-
-
-
-
-
 
         }
 
+        if (contact.HitWall && !contact.TouchGround)
+        {
+            rbKnight.velocity = new(0, rbKnight.velocity.y);
+        }
+
+
+        if (dashTimeLeft>0)
+        {
+            Debug.Log(transform.localScale.x);
+            rbKnight.velocity = new Vector2(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
+            dashTimeLeft -= Time.deltaTime;
+
+            if (Mathf.Abs(transform.position.x - lastAfterImagePos) > distanceBetweenImages)
+            {
+                AfterImageEffect();
+                lastAfterImagePos = transform.position.x;
+            }
+            CanMove = false;
+        }
+        else CanMove = true;
+
+        
+    }
+
+    private bool IsGrounded()
+    {
+        return contact.TouchGround;
+    }
+
+    private void ImplementArcadeJumpPh()
+    {
+        if (rbKnight.velocity.y < 0 && !contact.TouchGround)
+        {
+            rbKnight.velocity += (descMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+        }
+        else if (rbKnight.velocity.y > 0 && !contact.TouchGround)
+        {
+            rbKnight.velocity += (ascendMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
+        }
+    }
+    private void Accelerate(float inputX)
+    {
+        if (inputX != 0 && IsGrounded())
+        {
+            if (runningSpeed < maxSpeed) IncreaseSpeed();
+        }
+        else
+        {
+            runningSpeed = baseSpeed;
+        }
+    }
+    private void IncreaseSpeed()
+    {
+        runningSpeed += accelerationPace;
+    }
+
+    //Spawn and Despawn After Image
+    private void AfterImageEffect()
+    {
+        SpriteRenderer image = Instantiate(afterImage, transform.position, transform.rotation);
+        image.sprite = knightSpriteRenderer.sprite;
+        image.transform.localScale = knightSpriteRenderer.transform.localScale;
+        image.color = new Color(1f, 1f, 1f, 0.75f); //RBGA
+
+        Destroy(image.gameObject, imageLifeTime);
+    }
+
+    private void FlipSprite(float inputX) 
+    {
+        if (inputX > 0f)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (inputX < 0f)
+        {
+
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
     }
 }
+

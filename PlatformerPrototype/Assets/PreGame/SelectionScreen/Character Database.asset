@@ -15,7 +15,7 @@ MonoBehaviour:
   character:
   - Name: Knight
     characterSprite: {fileID: -1641092171, guid: a1039d066ddadae449f5e2764aa7f947, type: 3}
-    characterEntity: {fileID: 133042717119105482, guid: ee37601e8137a5646adf5bbf5195306a, type: 3}
+    characterEntity: {fileID: 5135655744947871148, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
   - Name: Mage
     characterSprite: {fileID: -1245157911, guid: b87634b1da57966408743f69691c5867, type: 3}
-    characterEntity: {fileID: 5783204138761478450, guid: a8a98c394c23ece4bb0339db16d7abd1, type: 3}
+    characterEntity: {fileID: 7732147291490190671, guid: ef00d17db4d7afb4189de68fd1d1b3bc, type: 3}

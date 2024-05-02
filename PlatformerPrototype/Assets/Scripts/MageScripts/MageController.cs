@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
+
+[RequireComponent(typeof(Rigidbody2D),typeof(Animator))]
 public class MageController : MonoBehaviour
 {
-    private Vector2 input = new(0, 0);
+    private Vector2 userInput = new(0, 0);
 
+    [Header("Movement Values")]
     [SerializeField]
     private float runningSpeed = 7.5f;
     [SerializeField]
@@ -26,24 +29,29 @@ public class MageController : MonoBehaviour
     private float descMultiplier = 2.55f;
     [SerializeField]
     private float ascendMultiplier = 2f;
-   
 
+    
 
     //Components 
     Rigidbody2D rbMage;
-    PhysicsMaterial2D physicsMaterial;
+    //PhysicsMaterial2D physicsMaterial;
     Animator animator;
-    
-    //Check enviroment contact directions
     EnvironmentData contact;
 
+    //Input System
+    private PlayerInput playerInput;
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+
+    public string activeActionMap;
+
+    //Actions
+    private InputAction move;
+
     private bool _isRunning = false;
-    private bool _isFacingRight = true;
-
-   
     private bool _canMove = true;
-    
 
+    //Bool Property Fields
     public bool IsRunning
     {
         get { return _isRunning; }
@@ -54,94 +62,79 @@ public class MageController : MonoBehaviour
         }
 
     }
-    
-    public bool IsFacingRight
+ 
+    public bool CanMove
     {
-        get { return _isFacingRight; }
+        get { return _canMove; }
         set
         {
-            if (_isFacingRight != value)
-            {
-                //flip
-                transform.localScale *= new Vector2(-1, 1);
-            }
-            _isFacingRight = value;
+            _canMove = value;
+            animator.SetBool(KnightAnimStrings.canMove, value);
 
         }
 
     }
-
-
-    public bool CanMove 
-    {
-        get { return animator.GetBool(MageAnimStrings.canMove); }
-        set 
-        {
-            _canMove = animator.GetBool(MageAnimStrings.canMove);
-        
-        }
-    
-    }
-
-
-
     private void Awake()
     {
-        //Retrive Components
+        playerInput = GetComponent<PlayerInput>();
+        inputAsset = playerInput.actions;
+        player = inputAsset.FindActionMap(activeActionMap);
+
         rbMage = GetComponent<Rigidbody2D>();
-        physicsMaterial = GetComponent<Collider2D>().sharedMaterial;   
         animator = GetComponent<Animator>();
         contact = GetComponent<EnvironmentData>();
+    }
+    
+
+    private void OnEnable()
+    {
+        move = player.FindAction("Move");
+        move.Enable();
+
+        player.FindAction("Jump").started += DoJump; //Subscribe Function
+        player.FindAction("Jump").Enable();
 
     }
-    // Start is called before the first frame update
-    void Start()
+    private void OnDisable()
     {
-
+        move.Disable();
+        player.FindAction("Jump").Disable();
     }
 
-
-    private void IncreaseSpeed(float pace)
+    private void DoJump(InputAction.CallbackContext context)
     {
-        runningSpeed += pace;
+        if (IsGrounded() && CanMove)
+        {
+            rbMage.velocity = new(0, jumpVelocity);
+        }
     }
 
     private void FixedUpdate()
     {
+        Accelerate(userInput.x);
+
+        ImplementArcadeJumpPh();
+    }
+    // Update is called once per frame
+    void Update()
+    {
         if (CanMove)
-        {   //Get Input Direction
-            input = new(Input.GetAxisRaw(InputFields.HorizontalAxis), 0);
-            Vector2 inputNormalized = input.normalized;
+        {
+            userInput = move.ReadValue<Vector2>();
 
-            //Ground
-            if (inputNormalized.x != 0 && contact.TouchGround)
-            {
-                if (runningSpeed < maxSpeed) IncreaseSpeed(accelerationPace);
-            }
-            else
-            {
-                runningSpeed = baseSpeed;
-            }
+            FlipSprite(userInput.x);
 
-            Debug.Log("Current speed: " + runningSpeed);
-            rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
+            rbMage.velocity = new(runningSpeed * userInput.x, rbMage.velocity.y);
 
-            //Air 
-            if (!contact.TouchGround)
+            //Mage is on Air
+
+            if (!IsGrounded())
             {
-                runningSpeed = airSpeed;
-                rbMage.velocity = new(runningSpeed * inputNormalized.x, rbMage.velocity.y);
+                rbMage.velocity = new(airSpeed * userInput.x, rbMage.velocity.y);
             }
 
-            if (Input.GetButton(InputFields.Jump) && contact.TouchGround)
-            {
-                //Create momentum illusion
-                Debug.Log("Space pressed");
-                //rbMage.velocity = Vector2.up * jumpVelocity;
-                rbMage.velocity = new(0, jumpVelocity);
-            }
+            //Debug.Log("Current Mage Speed: " + runningSpeed);
 
-            
 
             animator.SetFloat(MageAnimStrings.yVelocity, rbMage.velocity.y);
 
@@ -154,12 +147,27 @@ public class MageController : MonoBehaviour
                 IsRunning = false;
             }
 
-            //Prevent player glued on the wall
-
-           
-
         }
 
+
+        if (contact.HitWall && !contact.TouchGround)
+        {
+            rbMage.velocity = new(0, rbMage.velocity.y);
+     
+        }
+    }
+
+    public void SetActiveActionMap(string map) 
+    {
+        activeActionMap = map;
+    }
+    private bool IsGrounded()
+    {
+        return contact.TouchGround;
+    }
+
+    private void ImplementArcadeJumpPh()
+    {
         if (rbMage.velocity.y < 0 && !contact.TouchGround)
         {
             rbMage.velocity += (descMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
@@ -168,42 +176,33 @@ public class MageController : MonoBehaviour
         {
             rbMage.velocity += (ascendMultiplier - 1) * Physics2D.gravity.y * Vector2.up;
         }
-
+    }
+    private void Accelerate(float inputX) 
+    {
+        if (inputX != 0 && IsGrounded())
+        {
+            if (runningSpeed < maxSpeed) IncreaseSpeed();
+        }
+        else
+        {
+            runningSpeed = baseSpeed;
+        }
+    }
+    private void IncreaseSpeed() 
+    {
+        runningSpeed += accelerationPace;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FlipSprite(float inputX)
     {
-        if (input.x > 0f)
+        if (inputX > 0f)
         {
             transform.localScale = Vector3.one;
         }
-        else if (input.x < 0f)
+        else if (inputX < 0f)
         {
 
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-
-        
-            if (contact.HitWall && !contact.TouchGround)
-            {
-                rbMage.velocity = new(0, rbMage.velocity.y);
-                physicsMaterial.friction=0;
-                
-                Debug.Log("On wall, friction set to +"+physicsMaterial.friction);
-            }
-            else 
-            {
-                physicsMaterial.friction=0.4f;
-                Debug.Log("On ground, friction set to +" + physicsMaterial.friction);
-               
-            }
-
-        
-
-
     }
-
-
-
 }
