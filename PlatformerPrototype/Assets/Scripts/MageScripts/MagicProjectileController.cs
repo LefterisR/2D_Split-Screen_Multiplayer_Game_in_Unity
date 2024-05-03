@@ -64,8 +64,8 @@ public class MagicProjectileController : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = projectileDirection * projectileSpeed;
-
+        rb.velocity = projectileSpeed * projectileDirection;
+        rb.transform.Rotate(0f, 0f, 15f);
 
         if (_pulseCounter >= 0.8)
         {
@@ -80,10 +80,10 @@ public class MagicProjectileController : MonoBehaviour
         else if (_pulseCounter <= 0) 
         {
             projectileLight.intensity = _highIntensity;
-            _pulseCounter -= lightPulseClock;
+            _pulseCounter = lightPulseClock;
         }
 
-        Debug.Log(projectileLight.intensity);
+       // Debug.Log(projectileLight.intensity);
     
     }
 

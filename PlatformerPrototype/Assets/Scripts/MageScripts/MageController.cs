@@ -65,11 +65,12 @@ public class MageController : MonoBehaviour
  
     public bool CanMove
     {
-        get { return _canMove; }
+        get { return animator.GetBool(KnightAnimStrings.canMove);  }
         set
         {
-            _canMove = value;
+           // _canMove = value;
             animator.SetBool(KnightAnimStrings.canMove, value);
+            _canMove = animator.GetBool(KnightAnimStrings.canMove);
 
         }
 
@@ -118,6 +119,7 @@ public class MageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       if(!CanMove) Debug.Log(CanMove);
         if (CanMove)
         {
             userInput = move.ReadValue<Vector2>();

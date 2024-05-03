@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     void LoadCharacterToScene(int index,int playerCode) 
     {
         GameObject selectedCharacter = characterDatabase.GetCharacterPrefab(index);
-
+        
         //Retrieve approprite component
         
         if (playerCode == 1)
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             
             if (index == 0)     //Knight
             {
-                selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player1Map;
+                selectedCharacter.GetComponent<KnightController>().activeActionMap = player1Map;
                 selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player1Map;
             }
             else if (index == 1) //Mage 
@@ -92,4 +92,5 @@ public class GameManager : MonoBehaviour
     }
 
   
+    
 }

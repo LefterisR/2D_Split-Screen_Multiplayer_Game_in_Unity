@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 6055220781102398413}
   - component: {fileID: 236786754082304156}
   - component: {fileID: 5454287917393771230}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: MageCharacter
-  m_TagString: Player1
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   jumpVelocity: 30
   descMultiplier: 1.4
   ascendMultiplier: 1.1
-  activeActionMap: PlayerKeyboard
+  activeActionMap: PlayerController
 --- !u!114 &5454287917393771230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa20606aa30786469ef9544e9580147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeAttackTime: 0.7
-  shootAttackTime: 0.7
+  meleeAttackTime: 0.8
+  shootAttackTime: 0.8
   firePoint: {fileID: 1494551457205820898}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
   activeActionMap: PlayerKeyboard

@@ -89,12 +89,14 @@ public class MageCombatController : MonoBehaviour
         if (timeBetweenShoots <= 0)
         {
             _fire1Ready = true;
-            mageController.CanMove = true;
+            
         }
         else 
         {
+           // Debug.Log(rb.velocity);
+           // Debug.Log("Time: "+timeBetweenShoots);
             rb.velocity = Vector2.zero;
-            mageController.CanMove = false;
+            
 
             _fire1Ready = false;
             timeBetweenShoots -= Time.deltaTime;
@@ -103,12 +105,12 @@ public class MageCombatController : MonoBehaviour
         if (timeBetweenMelee <= 0)
         {
             _fire2Ready = true;
-            mageController.CanMove = true;
+            
         }
         else 
         {
             rb.velocity = Vector2.zero;
-            mageController.CanMove = false;
+            
 
             _fire2Ready = false;
             timeBetweenMelee -= Time.deltaTime;
