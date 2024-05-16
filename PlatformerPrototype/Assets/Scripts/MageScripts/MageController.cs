@@ -119,7 +119,7 @@ public class MageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(!CanMove) Debug.Log(CanMove);
+       //if(!CanMove) Debug.Log(CanMove);
         if (CanMove)
         {
             userInput = move.ReadValue<Vector2>();

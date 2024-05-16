@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6055220781102398413}
   - component: {fileID: 236786754082304156}
   - component: {fileID: 5454287917393771230}
+  - component: {fileID: 2707334693667430614}
   m_Layer: 7
   m_Name: MageCharacter
   m_TagString: Player2
@@ -302,4 +303,21 @@ MonoBehaviour:
   shootAttackTime: 0.8
   firePoint: {fileID: 1494551457205820898}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
-  activeActionMap: PlayerKeyboard
+  activeActionMap: PlayerController
+--- !u!114 &2707334693667430614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732147291490190671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1345c58cde883c54487bc499002eb2fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: 0
+  maxShield: 60
+  health: 0
+  maxHealth: 80
+  isAlive: 1

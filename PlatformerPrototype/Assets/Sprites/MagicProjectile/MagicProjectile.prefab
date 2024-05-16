@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1974654445610363505}
   - component: {fileID: 3970788049208451745}
   - component: {fileID: 496470741075323794}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: MagicProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
