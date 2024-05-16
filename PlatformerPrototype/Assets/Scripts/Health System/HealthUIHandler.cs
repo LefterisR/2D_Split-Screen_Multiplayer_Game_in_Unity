@@ -7,18 +7,24 @@ using TMPro;
 public class HealthUIHandler : MonoBehaviour
 {
     public Sprite[] shields;
+    public Sprite[] hearts;
 
     [Header("Player 1 UI")]
     public Image player1ShieldIm;
     public TMP_Text p1ShieldValue;
+    public TMP_Text p1HpValue;
+    public Image p1HealthBar;
+    public Image p1Heart;
     [Header("Player 2 UI")]
     public Image player2ShieldIm;
+    //public TMP_Text p2ShieldValue;
     //private int p1ShieldFractions;
 
 
     private PlayerHealth player1HealthScript;
     private float p1MaxShield;
-    
+    private float p1MaxHealth;
+
     private PlayerHealth player2HealthScript;
     private float p2MaxShield;
 
@@ -33,10 +39,22 @@ public class HealthUIHandler : MonoBehaviour
         player2HealthScript = player2.GetComponent<PlayerHealth>();
 
         p1MaxShield = player1HealthScript.maxShield;
+        p1MaxHealth = player1HealthScript.maxHealth;
+
         p2MaxShield = player2HealthScript.maxShield;
 
         Debug.Log(p1MaxShield);
         Debug.Log(p2MaxShield);
+
+    }
+
+    private void UpdatePlayer1HpBar() 
+    {
+        float hp = player1HealthScript.health;
+
+        p1HealthBar.fillAmount = Mathf.Clamp(hp/p1MaxHealth, 0, 1);
+
+        if (hp <= 0) p1Heart.sprite = hearts[1];
 
     }
 
@@ -85,7 +103,11 @@ public class HealthUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        p1HpValue.text = player1HealthScript.health.ToString();
+        
         p1ShieldValue.text = player1HealthScript.shield.ToString();
+
+        UpdatePlayer1HpBar();
         UpdateP1ShieldIcon();
         UpdateP2ShieldIcon();
     }
