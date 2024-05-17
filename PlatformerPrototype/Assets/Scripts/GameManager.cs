@@ -39,13 +39,22 @@ public class GameManager : MonoBehaviour
             
             if (index == 0)     //Knight
             {
-                selectedCharacter.GetComponent<KnightController>().activeActionMap = player1Map;
+                selectedCharacter.GetComponent<KnightController>().activeActionMap = player1Map; 
                 selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player1Map;
+
+                //Set enemy layer
+                selectedCharacter.GetComponent<KnightCombatController>().enemyLayerCode = LayersHandler.Player2;
             }
             else if (index == 1) //Mage 
             {
                 selectedCharacter.GetComponent<MageController>().activeActionMap = player1Map;
+                
                 selectedCharacter.GetComponent<MageCombatController>().activeActionMap = player1Map;
+
+                //Set enemy layer + tag
+                selectedCharacter.GetComponent<MageCombatController>().enemyLayerCode = LayersHandler.Player2;
+                selectedCharacter.GetComponent<MageCombatController>().enemyTag = TagHandler.Player2;
+
             }
 
             selectedCharacter.tag = TagHandler.Player1;
@@ -59,11 +68,18 @@ public class GameManager : MonoBehaviour
             {
                 selectedCharacter.GetComponent<KnightController>().activeActionMap = player2Map;
                 selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player2Map;
+
+                //Set enemy layer
+                selectedCharacter.GetComponent<KnightCombatController>().enemyLayerCode = LayersHandler.Player1;
             }
             else if (index == 1) //Mage 
             {
                 selectedCharacter.GetComponent<MageController>().activeActionMap = player2Map;
                 selectedCharacter.GetComponent<MageCombatController>().activeActionMap = player2Map;
+
+                //Set enemy layer + tag
+                selectedCharacter.GetComponent<MageCombatController>().enemyLayerCode = LayersHandler.Player1;
+                selectedCharacter.GetComponent<MageCombatController>().enemyTag = TagHandler.Player1;
             }
 
             selectedCharacter.tag = TagHandler.Player2;

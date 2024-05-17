@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1726878247132886550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2795244928111482694}
+  m_Layer: 7
+  m_Name: attackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2795244928111482694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726878247132886550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.51, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2655535012359356399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5135655744947871148
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,7 +68,8 @@ Transform:
   m_LocalPosition: {x: -5.3081393, y: -3.0841393, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2795244928111482694}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5186424751233164859
@@ -273,7 +305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a30e6723c531fe43892105d90c44e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayerCode: 6
   attackTime: 0.82
+  meleeAttackPoint: {fileID: 2795244928111482694}
+  scanRadius: 0.8
+  meleeDmg: 17
   activeActionMap: PlayerController
 --- !u!114 &3724979253078789527
 MonoBehaviour:
@@ -290,5 +326,7 @@ MonoBehaviour:
   shield: 0
   maxShield: 30
   health: 0
-  maxHealth: 100
+  maxHealth: 120
   isAlive: 1
+  damageShieldEffect: {fileID: 1726878247132886550}
+  damageHealthEffect: {fileID: 1726878247132886550}

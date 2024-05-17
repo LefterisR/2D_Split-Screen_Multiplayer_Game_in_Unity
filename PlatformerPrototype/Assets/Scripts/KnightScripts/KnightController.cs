@@ -217,7 +217,7 @@ public class KnightController : MonoBehaviour
 
         if (dashTimeLeft>0)
         {
-            Debug.Log(transform.localScale.x);
+            //Debug.Log(transform.localScale.x);
             rbKnight.velocity = new Vector2(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
             dashTimeLeft -= Time.deltaTime;
 

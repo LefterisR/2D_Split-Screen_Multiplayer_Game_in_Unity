@@ -11,11 +11,18 @@ public class MageCombatController : MonoBehaviour
     Rigidbody2D rb;
     MageController mageController;
 
-    //Enemy Layer code
+    //Enemy Tag & Layer Code
     public string enemyTag;
+    public int enemyLayerCode;
+    private LayerMask enemyLayerMask;
 
     //Melee attack 
     [Header("Melee Attack")]
+    public Transform meleeAttackPoint;
+    [SerializeField]
+    private float scanRadius = 0.8f;
+    [SerializeField]
+    private float meleeDmg = 5f;
     private float timeBetweenMelee=0;
     public float meleeAttackTime = 1f;
     private bool _fire1Ready = true;
@@ -49,7 +56,11 @@ public class MageCombatController : MonoBehaviour
         mageController = GetComponent<MageController>();
 
     }
-   
+
+    private void Start()
+    {
+        enemyLayerMask = (1<<enemyLayerCode);
+    }
 
     private void OnEnable()
     {   
@@ -133,4 +144,30 @@ public class MageCombatController : MonoBehaviour
         mC.projectileDirection = new Vector2(transform.localScale.x, 0f);
         mC.enemyTagPC = enemyTag;
     }
+
+    //Attack Scan
+    //A function used as an animator event, it is called upon a specific SINGLE fire1 frame
+
+    public void AttackScanMage() 
+    {
+        //Detect overlapping enemies 
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(meleeAttackPoint.position, scanRadius,enemyLayerMask);
+
+        foreach (Collider2D enemyEntity in enemy) 
+        {
+            if (enemyEntity != null) 
+            {
+                Debug.Log(enemyEntity.name);
+                enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
+            }
+        }
+ 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(meleeAttackPoint.position, scanRadius);
+    }
+
+
 }

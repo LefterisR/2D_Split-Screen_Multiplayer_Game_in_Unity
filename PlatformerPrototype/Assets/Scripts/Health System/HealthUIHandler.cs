@@ -124,7 +124,7 @@ public class HealthUIHandler : MonoBehaviour
         p1ShieldValue.text = player1HealthScript.shield.ToString();
 
         p2HpValue.text = player2HealthScript.health.ToString();
-        p2ShieldValue.text = player2HealthScript.health.ToString();
+        p2ShieldValue.text = player2HealthScript.shield.ToString();
 
         UpdatePlayer1HpBar();
         UpdatePlayer2HpBar();
