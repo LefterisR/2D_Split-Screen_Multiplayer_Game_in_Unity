@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private bool isAlive = true;
 
+    public GameObject damageShieldEffect;
+    public GameObject damageHealthEffect;
+
 
     void Start()
     {
@@ -23,16 +26,48 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage( float damageAmount ) 
     {
-
-        if (shield >= 0)
+        Debug.Log("Damage Taken");
+        if (shield > 0)
         {
             if (shield - damageAmount < 0) shield = 0;
             else shield -= damageAmount;
-            
+
+            if (damageShieldEffect != null)
+            {
+                // Instantiate the impact effect
+                GameObject effectInstance = Instantiate(damageShieldEffect, transform.position, Quaternion.identity);
+
+                // Get the Particle System component from the impact effect
+                ParticleSystem particleSystem = effectInstance.GetComponent<ParticleSystem>();
+
+                // Calculate the duration of the particle system's lifetime
+                float particleSystemDuration = particleSystem.main.duration + particleSystem.main.startLifetime.constant;
+
+                // Destroy the impact effect GameObject after the particle system's lifetime
+                Destroy(effectInstance, particleSystemDuration);
+            }
+
+
         }
-        else 
+        else if(shield<=0)
         {   if(health-damageAmount < 0) health = 0;
             else health -= damageAmount;
+
+            if (damageHealthEffect != null)
+            {
+                // Instantiate the impact effect
+                GameObject effectInstance = Instantiate(damageHealthEffect, transform.position, Quaternion.identity);
+
+                // Get the Particle System component from the impact effect
+                ParticleSystem particleSystem = effectInstance.GetComponent<ParticleSystem>();
+
+                // Calculate the duration of the particle system's lifetime
+                float particleSystemDuration = particleSystem.main.duration + particleSystem.main.startLifetime.constant;
+
+                // Destroy the impact effect GameObject after the particle system's lifetime
+                Destroy(effectInstance, particleSystemDuration);
+            }
+
         }
 
         if(health <=0) isAlive = false;

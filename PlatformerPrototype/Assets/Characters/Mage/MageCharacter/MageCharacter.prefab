@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3500425629271332622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.741, y: 0.009, z: 0}
+  m_LocalPosition: {x: 1.14, y: 0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,9 +49,9 @@ GameObject:
   - component: {fileID: 236786754082304156}
   - component: {fileID: 5454287917393771230}
   - component: {fileID: 2707334693667430614}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: MageCharacter
-  m_TagString: Player2
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   jumpVelocity: 30
   descMultiplier: 1.4
   ascendMultiplier: 1.1
-  activeActionMap: PlayerController
+  activeActionMap: PlayerKeyboard
 --- !u!114 &5454287917393771230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,11 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa20606aa30786469ef9544e9580147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: 
   meleeAttackTime: 0.8
   shootAttackTime: 0.8
   firePoint: {fileID: 1494551457205820898}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
-  activeActionMap: PlayerController
+  activeActionMap: PlayerKeyboard
 --- !u!114 &2707334693667430614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,3 +322,5 @@ MonoBehaviour:
   health: 0
   maxHealth: 80
   isAlive: 1
+  damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
+  damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}

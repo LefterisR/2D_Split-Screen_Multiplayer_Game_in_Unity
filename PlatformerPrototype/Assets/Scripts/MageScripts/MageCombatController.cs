@@ -11,6 +11,9 @@ public class MageCombatController : MonoBehaviour
     Rigidbody2D rb;
     MageController mageController;
 
+    //Enemy Layer code
+    public string enemyTag;
+
     //Melee attack 
     [Header("Melee Attack")]
     private float timeBetweenMelee=0;
@@ -126,6 +129,8 @@ public class MageCombatController : MonoBehaviour
 
     public void OnFire1SpawnProjectile()
     {
-        Instantiate(magicProjectile, firePoint.position, firePoint.rotation).projectileDirection = new Vector2(transform.localScale.x, 0f);
+        MagicProjectileController mC = Instantiate(magicProjectile, firePoint.position, firePoint.rotation);
+        mC.projectileDirection = new Vector2(transform.localScale.x, 0f);
+        mC.enemyTagPC = enemyTag;
     }
 }

@@ -60,3 +60,6 @@ TagManager:
   - name: Characters
     uniqueID: 1738596001
     locked: 0
+  - name: Consumables
+    uniqueID: 707435481
+    locked: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -8,9 +9,11 @@ using UnityEngine.Rendering.Universal;
 public class MagicProjectileController : MonoBehaviour
 {
     [SerializeField] 
-    private float projectileSpeed = 15;
+    private float projectileSpeed = 25;
+    [SerializeField] float projectileDmg = 4.5f;
 
     public Vector2 projectileDirection;
+    public string enemyTagPC;
 
     // public play on Impact
     public GameObject impactEffect;
@@ -27,6 +30,7 @@ public class MagicProjectileController : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.layer = 9;
         rb = GetComponent<Rigidbody2D>();
         projectileLight = GetComponent<Light2D>();
     }
@@ -41,6 +45,11 @@ public class MagicProjectileController : MonoBehaviour
             
         }
 
+        if (collision.CompareTag(enemyTagPC))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(projectileDmg);
+            Debug.Log("Hit Enemy");
+        }
 
         if(impactEffect != null)
         {

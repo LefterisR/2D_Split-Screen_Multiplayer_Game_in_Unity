@@ -14,11 +14,13 @@ public class HealthUIHandler : MonoBehaviour
     public TMP_Text p1ShieldValue;
     public TMP_Text p1HpValue;
     public Image p1HealthBar;
-    public Image p1Heart;
+    public Image p1HeartIcon;
     [Header("Player 2 UI")]
     public Image player2ShieldIm;
-    //public TMP_Text p2ShieldValue;
-    //private int p1ShieldFractions;
+    public TMP_Text p2ShieldValue;
+    public TMP_Text p2HpValue;
+    public Image p2HealthBar;
+    public Image p2HeartIcon;
 
 
     private PlayerHealth player1HealthScript;
@@ -27,7 +29,7 @@ public class HealthUIHandler : MonoBehaviour
 
     private PlayerHealth player2HealthScript;
     private float p2MaxShield;
-
+    private float p2MaxHealth;
 
 
     private void Start()
@@ -42,6 +44,10 @@ public class HealthUIHandler : MonoBehaviour
         p1MaxHealth = player1HealthScript.maxHealth;
 
         p2MaxShield = player2HealthScript.maxShield;
+        p2MaxHealth = player2HealthScript.maxHealth;
+
+        p1HeartIcon.sprite = hearts[0];
+        p2HeartIcon.sprite = hearts[0];
 
         Debug.Log(p1MaxShield);
         Debug.Log(p2MaxShield);
@@ -54,7 +60,17 @@ public class HealthUIHandler : MonoBehaviour
 
         p1HealthBar.fillAmount = Mathf.Clamp(hp/p1MaxHealth, 0, 1);
 
-        if (hp <= 0) p1Heart.sprite = hearts[1];
+        if (p1HealthBar.fillAmount == 0) p1HeartIcon.sprite = hearts[1];
+
+    }
+
+    private void UpdatePlayer2HpBar()
+    {
+        float hp = player2HealthScript.health;
+
+        p2HealthBar.fillAmount = Mathf.Clamp(hp / p2MaxHealth, 0, 1);
+
+        if (p2HealthBar.fillAmount == 0) p2HeartIcon.sprite = hearts[1];
 
     }
 
@@ -107,7 +123,12 @@ public class HealthUIHandler : MonoBehaviour
         
         p1ShieldValue.text = player1HealthScript.shield.ToString();
 
+        p2HpValue.text = player2HealthScript.health.ToString();
+        p2ShieldValue.text = player2HealthScript.health.ToString();
+
         UpdatePlayer1HpBar();
+        UpdatePlayer2HpBar();
+
         UpdateP1ShieldIcon();
         UpdateP2ShieldIcon();
     }
