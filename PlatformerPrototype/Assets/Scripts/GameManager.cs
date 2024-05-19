@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     CinemachineVirtualCamera virtualCameraP1;
-  //  [SerializeField]
-   // CinemachineVirtualCamera virtualCameraP2;
+    [SerializeField]
+    CinemachineVirtualCamera virtualCameraP2;
 
     private GameObject _activePlayer1;
     private GameObject _activePlayer2;
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
         virtualCameraP1.Follow = _activePlayer1.transform;
 
-        //virtualCameraP2.Follow = _activePlayer2.transform;
+        virtualCameraP2.Follow = _activePlayer2.transform;
 
     }
 

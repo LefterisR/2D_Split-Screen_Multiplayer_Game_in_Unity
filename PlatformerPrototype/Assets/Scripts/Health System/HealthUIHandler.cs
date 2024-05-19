@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class HealthUIHandler : MonoBehaviour
 {
@@ -30,7 +31,9 @@ public class HealthUIHandler : MonoBehaviour
     private PlayerHealth player2HealthScript;
     private float p2MaxShield;
     private float p2MaxHealth;
-
+   
+    static int callCounter = 0;
+    private bool callFillHeart = true;
 
     private void Start()
     {
@@ -61,6 +64,7 @@ public class HealthUIHandler : MonoBehaviour
         p1HealthBar.fillAmount = Mathf.Clamp(hp/p1MaxHealth, 0, 1);
 
         if (p1HealthBar.fillAmount == 0) p1HeartIcon.sprite = hearts[1];
+        
 
     }
 
@@ -71,6 +75,7 @@ public class HealthUIHandler : MonoBehaviour
         p2HealthBar.fillAmount = Mathf.Clamp(hp / p2MaxHealth, 0, 1);
 
         if (p2HealthBar.fillAmount == 0) p2HeartIcon.sprite = hearts[1];
+       
 
     }
 
@@ -119,6 +124,12 @@ public class HealthUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (callFillHeart)
+        {
+            Debug.Log("Called times " + callCounter);
+            callFillHeart = SetHeartFull();
+        }
+
         p1HpValue.text = player1HealthScript.health.ToString();
         
         p1ShieldValue.text = player1HealthScript.shield.ToString();
@@ -132,4 +143,15 @@ public class HealthUIHandler : MonoBehaviour
         UpdateP1ShieldIcon();
         UpdateP2ShieldIcon();
     }
+
+    private bool SetHeartFull() 
+    {
+        callCounter++;
+        p1HeartIcon.sprite = hearts[0];
+        p2HeartIcon.sprite = hearts[0];
+
+        if (callCounter < 10) { return true; }
+        else return false;
+    }
+
 }

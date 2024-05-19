@@ -22,6 +22,7 @@ public class CharacterManager : MonoBehaviour
     public SpriteRenderer spriteArtP2;
 
     [Header("General")]
+    public AudioSource genericButtonPressSound;
     public TMP_Text currentActivePtxt;
     public Button startGameButton;
 
@@ -51,6 +52,7 @@ public class CharacterManager : MonoBehaviour
 
     public void Next() 
     {
+        genericButtonPressSound.Play();
         _selectedOption++;
 
         if (_selectedOption >= characterDatabase.characterCount) 
@@ -65,6 +67,7 @@ public class CharacterManager : MonoBehaviour
 
     public void Previous() 
     {
+        genericButtonPressSound.Play();
         _selectedOption--;
 
         if (_selectedOption < 0)
@@ -106,6 +109,7 @@ public class CharacterManager : MonoBehaviour
     
     public void SelectCharacter() 
     {
+        genericButtonPressSound.Play();
         if (!hasP1Chose && !hasP2Chose)
         {
             PlayerPrefs.SetInt("selectedOptionP1", _selectedOption);
