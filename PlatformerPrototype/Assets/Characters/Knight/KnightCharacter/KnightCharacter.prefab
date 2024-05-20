@@ -328,5 +328,10 @@ MonoBehaviour:
   health: 0
   maxHealth: 120
   isAlive: 1
+  spikeDmg: 2
+  spikeBallDmg: 8.5
+  invincibilityTime: 1.2
+  flashTime: 0.22
+  flashColor: {r: 1, g: 0.2216981, b: 0.2216981, a: 1}
   damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
   damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}

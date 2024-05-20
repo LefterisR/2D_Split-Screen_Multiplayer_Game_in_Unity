@@ -44,17 +44,23 @@ public class MovingPlatformLogic : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.position.y > transform.position.y) 
+        if (collision.CompareTag(TagHandler.Player1) || collision.CompareTag(TagHandler.Player2))
         {
-            collision.transform.SetParent(transform, true);
-        }
-            
+            if (collision.transform.position.y > transform.position.y)
+            {
+                collision.transform.SetParent(transform, true);
+            }
+        }   
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.transform.SetParent(null);
-    }
+        if (collision.CompareTag(TagHandler.Player1) || collision.CompareTag(TagHandler.Player2))
+        {
 
+            collision.transform.SetParent(null);
+
+        }
+    }
 
 }

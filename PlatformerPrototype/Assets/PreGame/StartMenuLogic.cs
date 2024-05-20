@@ -24,6 +24,10 @@ public class StartMenuLogic : MonoBehaviour
     
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     IEnumerator LoadNextSceneDelayed() 
     {
         

@@ -8,6 +8,8 @@ TagManager:
   - Player1
   - Player2
   - Consumables
+  - Spikes
+  - SpikeBall
   layers:
   - Default
   - TransparentFX
@@ -62,4 +64,7 @@ TagManager:
     locked: 0
   - name: Consumables
     uniqueID: 707435481
+    locked: 0
+  - name: Traps
+    uniqueID: 1011021665
     locked: 0
