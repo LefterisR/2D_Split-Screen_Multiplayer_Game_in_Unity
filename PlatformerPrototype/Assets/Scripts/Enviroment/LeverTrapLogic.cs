@@ -23,6 +23,7 @@ public class LeverTrapLogic : MonoBehaviour
     {
         if(collision.CompareTag(TagHandler.Player1) || collision.CompareTag(TagHandler.Player2)) 
         {
+            spikeBallRb.GetComponent<Collider2D>().enabled = true;
             //Debug.Log(collision.gameObject.name);
             spikeBallRb.gravityScale = 2.0f;
             trapRenderer.sprite = trapUsedSprite;

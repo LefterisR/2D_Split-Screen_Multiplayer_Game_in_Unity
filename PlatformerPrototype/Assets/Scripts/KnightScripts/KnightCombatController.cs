@@ -23,6 +23,7 @@ public class KnightCombatController : MonoBehaviour
     private float scanRadius = 0.8f;
     [SerializeField]
     private float meleeDmg = 17f;
+    private float baseDmgValue;
 
     private PlayerInput playerInput;
     private InputActionAsset inputAsset;
@@ -31,6 +32,9 @@ public class KnightCombatController : MonoBehaviour
     public string activeActionMap;
 
     private bool _fire1Ready = true;
+
+    private float dmgBuffTimeCounter;
+    private bool isDmgBuffActive = false;
 
     private void Awake()
     {
@@ -47,6 +51,10 @@ public class KnightCombatController : MonoBehaviour
     private void Start()
     {
         enemyLayerMask = (1 << enemyLayerCode);
+
+        baseDmgValue = meleeDmg;
+
+        Debug.Log("Enemy layer mask code int " +enemyLayerCode);
     }
 
     private void OnEnable()
@@ -85,8 +93,38 @@ public class KnightCombatController : MonoBehaviour
             
             
         }
+
+        if (dmgBuffTimeCounter > 0)
+        {
+            dmgBuffTimeCounter -= Time.deltaTime;
+        }
+
+        if (isDmgBuffActive && dmgBuffTimeCounter <= 0) 
+        {
+            meleeDmg = baseDmgValue;
+            isDmgBuffActive = false;
+            Debug.Log(meleeDmg);
+        }
+
+
+
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(TagHandler.DamageBuff)) 
+        {
+            dmgBuffTimeCounter = BuffData.damageBuffTime;
+            isDmgBuffActive = true;
+            meleeDmg += BuffData.damageBuff;
+
+            collision.GetComponent<DamageBuffBehaviour>().DestroyDamagePotion();
+
+            Debug.Log(meleeDmg);
+
+        }
+    }
 
     private bool IsGrounded() 
     {
@@ -98,14 +136,27 @@ public class KnightCombatController : MonoBehaviour
     public void AttackScanKnight()
     {
         //Detect overlapping enemies 
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(meleeAttackPoint.position, scanRadius, enemyLayerMask);
-
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(meleeAttackPoint.position, scanRadius);
+        
         foreach (Collider2D enemyEntity in enemy)
         {
             if (enemyEntity != null)
             {
-                Debug.Log(enemyEntity.name);
-                enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
+               
+                if(enemyEntity.gameObject.layer == enemyLayerCode) 
+                {
+                    enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
+                    Debug.Log(enemyEntity.name);
+                }
+                if(enemyEntity.gameObject.layer == LayersHandler.Mobs) 
+                {
+                    Debug.Log(enemyEntity.name);
+                    enemyEntity.GetComponent<SlimeBehaviour>().TakeDamage(meleeDmg);
+                }
+                //if (enemyEntity.IsTouchingLayers(enemyLayerMask))
+               // {
+                 //   
+                //}
             }
         }
 

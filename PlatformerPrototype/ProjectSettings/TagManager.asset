@@ -10,6 +10,8 @@ TagManager:
   - Consumables
   - Spikes
   - SpikeBall
+  - DamageBuff
+  - Slime
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - MagicProjectile
   - Player1Camera
   - Player2Camera
-  - 
+  - Mobs
   - 
   - 
   - 

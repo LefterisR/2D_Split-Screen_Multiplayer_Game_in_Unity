@@ -9,7 +9,7 @@ public class MageCombatController : MonoBehaviour
     Animator animator;
     EnvironmentData contact;
     Rigidbody2D rb;
-    MageController mageController;
+    //MageController mageController;
 
     //Enemy Tag & Layer Code
     public string enemyTag;
@@ -26,6 +26,7 @@ public class MageCombatController : MonoBehaviour
     private float timeBetweenMelee=0;
     public float meleeAttackTime = 1f;
     private bool _fire1Ready = true;
+    private float baseDmgValueM;
 
     //Range attack 
     [Header("Range Attack")]
@@ -35,12 +36,17 @@ public class MageCombatController : MonoBehaviour
     public Transform firePoint;
     public MagicProjectileController magicProjectile;
     private bool _fire2Ready = true;
+    private float baseDmgValueR;
 
+    private bool isDmgBuffActive = false;
+    private float dmgBuffTimeCounter;
 
     //Input Handle
     private PlayerInput playerInput;
     private InputActionAsset inputAsset;
     private InputActionMap player;
+
+   // private float damageTimeCounter;
 
     public string activeActionMap;
     private void Awake()
@@ -53,13 +59,15 @@ public class MageCombatController : MonoBehaviour
         player = inputAsset.FindActionMap(activeActionMap);
 
         rb = GetComponent<Rigidbody2D>();
-        mageController = GetComponent<MageController>();
+       // mageController = GetComponent<MageController>();
 
     }
 
     private void Start()
     {
         enemyLayerMask = (1<<enemyLayerCode);
+
+        baseDmgValueM = meleeDmg;
     }
 
     private void OnEnable()
@@ -129,7 +137,40 @@ public class MageCombatController : MonoBehaviour
             _fire2Ready = false;
             timeBetweenMelee -= Time.deltaTime;
         }
+
+
+        if (dmgBuffTimeCounter > 0)
+        {
+            dmgBuffTimeCounter -= Time.deltaTime;
+        }
+
+        if (isDmgBuffActive && dmgBuffTimeCounter <= 0)
+        {
+            meleeDmg = baseDmgValueM;
+            isDmgBuffActive = false;
+            Debug.Log(meleeDmg);
+        }
+
     }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(TagHandler.DamageBuff))
+        {
+            dmgBuffTimeCounter = BuffData.damageBuffTime;
+            isDmgBuffActive = true;
+            meleeDmg += BuffData.damageBuff;
+
+            collision.GetComponent<DamageBuffBehaviour>().DestroyDamagePotion();
+
+            Debug.Log(meleeDmg);
+
+        }
+    }
+
+
 
     private bool IsGrounded() 
     {
@@ -151,14 +192,19 @@ public class MageCombatController : MonoBehaviour
     public void AttackScanMage() 
     {
         //Detect overlapping enemies 
-        Collider2D[] enemy = Physics2D.OverlapCircleAll(meleeAttackPoint.position, scanRadius,enemyLayerMask);
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(meleeAttackPoint.position, scanRadius);
 
         foreach (Collider2D enemyEntity in enemy) 
         {
-            if (enemyEntity != null) 
+            if (enemyEntity.gameObject.layer == enemyLayerCode)
+            {
+                enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
+                Debug.Log(enemyEntity.name);
+            }
+            if (enemyEntity.gameObject.layer == LayersHandler.Mobs)
             {
                 Debug.Log(enemyEntity.name);
-                enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
+                enemyEntity.GetComponent<SlimeBehaviour>().TakeDamage(meleeDmg);
             }
         }
  

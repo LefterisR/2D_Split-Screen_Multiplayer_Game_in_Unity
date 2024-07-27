@@ -51,6 +51,11 @@ public class MagicProjectileController : MonoBehaviour
             Debug.Log("Hit Enemy");
         }
 
+        if (collision.CompareTag(TagHandler.Slime))
+        {
+            collision.GetComponent<SlimeBehaviour>().TakeDamage(projectileDmg);
+        }
+
         if(impactEffect != null)
         {
             // Instantiate the impact effect
