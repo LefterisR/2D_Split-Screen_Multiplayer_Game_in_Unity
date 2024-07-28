@@ -11,5 +11,6 @@ internal class LayersHandler
     internal static int Player1 = 6;
     internal static int Player2 = 7;
     internal static int Mobs = 12;
+    internal static int Crate = 13;
 }
 

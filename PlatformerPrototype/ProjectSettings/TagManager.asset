@@ -12,6 +12,7 @@ TagManager:
   - SpikeBall
   - DamageBuff
   - Slime
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Player1Camera
   - Player2Camera
   - Mobs
-  - 
+  - Crates
   - 
   - 
   - 

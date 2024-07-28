@@ -56,6 +56,11 @@ public class MagicProjectileController : MonoBehaviour
             collision.GetComponent<SlimeBehaviour>().TakeDamage(projectileDmg);
         }
 
+        if (collision.CompareTag(TagHandler.Crate)) 
+        {
+            collision.GetComponent<BreakableCrateLogic>().BrakeCrate(projectileDmg);
+        }
+
         if(impactEffect != null)
         {
             // Instantiate the impact effect

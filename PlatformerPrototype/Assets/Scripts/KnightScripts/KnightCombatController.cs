@@ -153,6 +153,11 @@ public class KnightCombatController : MonoBehaviour
                     Debug.Log(enemyEntity.name);
                     enemyEntity.GetComponent<SlimeBehaviour>().TakeDamage(meleeDmg);
                 }
+                if (enemyEntity.gameObject.layer == LayersHandler.Crate) 
+                {
+                    Debug.Log(enemyEntity.name);
+                    enemyEntity.GetComponent<BreakableCrateLogic>().BrakeCrate(meleeDmg);
+                }
                 //if (enemyEntity.IsTouchingLayers(enemyLayerMask))
                // {
                  //   

@@ -80,7 +80,8 @@ MonoBehaviour:
   characterDatabase: {fileID: 11400000, guid: c1f5a962a6515f54bb3323b897e23d86, type: 2}
   spawnPoint1: {fileID: 2846619270237964318}
   spawnPoint2: {fileID: 4727300972477521701}
-  virtualCamera: {fileID: 0}
+  virtualCameraP1: {fileID: 0}
+  virtualCameraP2: {fileID: 0}
 --- !u!1 &8642716757314724631
 GameObject:
   m_ObjectHideFlags: 0
