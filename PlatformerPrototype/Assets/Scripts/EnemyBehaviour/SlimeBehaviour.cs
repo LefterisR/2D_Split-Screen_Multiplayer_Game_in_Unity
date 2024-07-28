@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,10 +28,11 @@ public class SlimeBehaviour : MonoBehaviour
     
     private SpriteRenderer spriteRenderer;
     private Animator anim;
-    public float deathAnimTime;
+    private float deathAnimTime;  //in seconds
     private bool isAlive = true;
 
     public Color getDmgColor;
+    public string deathAnimationName;
 
     private void Awake()
     {
@@ -44,6 +46,26 @@ public class SlimeBehaviour : MonoBehaviour
         transform.position = patrolPointsArray[patrolPoint1].position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        RuntimeAnimatorController rac = anim.runtimeAnimatorController;
+
+        bool foundClip = false; 
+
+        foreach (AnimationClip clip in rac.animationClips) 
+        {
+            if (clip.name == deathAnimationName) 
+            {
+                foundClip = true;
+                deathAnimTime = clip.length;
+            }
+        }
+
+        if (!foundClip) 
+        {
+            Debug.Log("Death animation not found. Setting time to a default value. Possible error in name string.");
+            deathAnimTime = 1.2f;
+        }
+        
     }
 
     void Update()
@@ -121,6 +143,7 @@ public class SlimeBehaviour : MonoBehaviour
     {
         anim.SetTrigger("death");
 
+        Debug.Log("Death animation time " + deathAnimTime + "sec");
         yield return new WaitForSeconds(deathAnimTime);
 
         if(potionDrop != null)
