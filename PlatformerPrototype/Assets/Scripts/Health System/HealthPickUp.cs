@@ -8,6 +8,8 @@ public class HealthPickUp : MonoBehaviour
     private float healthBonus = 10;
 
     public GameObject healthPickUpEffect;
+    public AudioClip healthPickUpSound;
+    public AudioSource audioSource;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,13 +38,20 @@ public class HealthPickUp : MonoBehaviour
                     Destroy(effectInstance, particleSystemDuration);
                 }
 
+
+               audioSource.clip = healthPickUpSound;
+               float sfxTime = healthPickUpSound.length;
+               audioSource.Play();
+               GetComponent<SpriteRenderer>().enabled = false;
+               GetComponent<Collider2D>().enabled = false;
+
                 if ((playerHealth + healthBonus) > playerMaxHealth)
                 {
                     collision.gameObject.GetComponent<PlayerHealth>().health = playerMaxHealth;
                 }
                 else collision.gameObject.GetComponent<PlayerHealth>().health += healthBonus;
 
-                Destroy(gameObject);
+                Destroy(gameObject,sfxTime);
             }
         }
     }

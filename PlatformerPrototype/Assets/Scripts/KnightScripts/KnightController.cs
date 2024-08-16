@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class KnightController : MonoBehaviour
 {
@@ -44,6 +45,13 @@ public class KnightController : MonoBehaviour
     private float imageLifeTime = 1.4f;
     public SpriteRenderer afterImage;
 
+    //SFX
+    [Header("Knight SFX")]
+    public AudioSource audioSourceGeneric;
+    public AudioSource audioSourceRunning;
+    public AudioClip knRunSFX;
+    public AudioClip knJumpSFX;
+    public AudioClip knDashSFX;
 
 
     private float dashRechargeCounter = 0f; //Dash ability cooldown character
@@ -69,6 +77,8 @@ public class KnightController : MonoBehaviour
 
     private bool _isRunning = false;
     private bool _canMove = true;
+
+    private KnightController knightController;
 //    private bool _isDashing = false;
 
     //Bool Property Fields
@@ -116,7 +126,6 @@ public class KnightController : MonoBehaviour
     
         knightSpriteRenderer = GetComponent<SpriteRenderer>();  
     }
-   
 
     private void OnEnable()
     {
@@ -143,7 +152,7 @@ public class KnightController : MonoBehaviour
         if (_fire2Ready) 
         {
             //rbKnight.velocity = new Vector2(dashSpeed * transform.localScale.x, rbKnight.velocity.y);
-
+            audioSourceGeneric.PlayOneShot(knDashSFX, 0.5f);
             dashRechargeCounter = dashCooldown;
             dashTimeLeft = dashTime;
             AfterImageEffect();
@@ -158,6 +167,7 @@ public class KnightController : MonoBehaviour
     {
         if (IsGrounded())
         {
+            audioSourceGeneric.PlayOneShot(knJumpSFX,0.5f);
             rbKnight.velocity = new(0, jumpVelocity);
         }
     }
@@ -170,7 +180,15 @@ public class KnightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (IsRunning && IsGrounded())
+        {
+            audioSourceRunning.enabled = true;
+        }
+        else 
+        {
+            audioSourceRunning.Pause();
+            audioSourceRunning.enabled = false;
+        }
         if (CanMove)
         {
             userInput = move.ReadValue<Vector2>();

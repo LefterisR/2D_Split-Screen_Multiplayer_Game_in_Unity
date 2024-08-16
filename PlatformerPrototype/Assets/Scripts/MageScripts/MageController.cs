@@ -30,7 +30,11 @@ public class MageController : MonoBehaviour
     [SerializeField]
     private float ascendMultiplier = 2f;
 
-    
+    [Header("Jump Data")]
+    public AudioSource audioSourceGeneric;
+    public AudioSource audioSourceRunning;
+    public AudioClip mgRunSFX;
+    public AudioClip mgJumpSFX;
 
     //Components 
     Rigidbody2D rbMage;
@@ -106,6 +110,7 @@ public class MageController : MonoBehaviour
     {
         if (IsGrounded() && CanMove)
         {
+            audioSourceGeneric.PlayOneShot(mgJumpSFX, 0.6f);
             rbMage.velocity = new(0, jumpVelocity);
         }
     }
@@ -119,6 +124,15 @@ public class MageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsRunning && IsGrounded())
+        {
+            audioSourceRunning.enabled = true;
+        }
+        else 
+        {
+            audioSourceRunning.Pause();
+            audioSourceRunning.enabled = false;
+        }
        //if(!CanMove) Debug.Log(CanMove);
         if (CanMove)
         {

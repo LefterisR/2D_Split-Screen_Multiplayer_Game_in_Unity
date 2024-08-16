@@ -38,6 +38,11 @@ public class MageCombatController : MonoBehaviour
     private bool _fire2Ready = true;
     private float baseDmgValueR;
 
+    [Header("Combat SFX")]
+    public AudioSource audioSource;
+    public AudioClip mgStaffSfx;
+    public AudioClip mgSpellSfx;
+
     private bool isDmgBuffActive = false;
     private float dmgBuffTimeCounter;
 
@@ -46,9 +51,12 @@ public class MageCombatController : MonoBehaviour
     private InputActionAsset inputAsset;
     private InputActionMap player;
 
-   // private float damageTimeCounter;
+    // private float damageTimeCounter;
 
+    private MageController mageController;
+    
     public string activeActionMap;
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -59,7 +67,7 @@ public class MageCombatController : MonoBehaviour
         player = inputAsset.FindActionMap(activeActionMap);
 
         rb = GetComponent<Rigidbody2D>();
-       // mageController = GetComponent<MageController>();
+        mageController = GetComponent<MageController>();
 
     }
 
@@ -89,6 +97,8 @@ public class MageCombatController : MonoBehaviour
     {
         if (animator.GetBool(MageAnimStrings.canFire2) && IsGrounded() && _fire2Ready)
         {
+            mageController.IsRunning = false;
+            audioSource.PlayOneShot(mgStaffSfx, 0.8f);
             timeBetweenMelee = meleeAttackTime;
             animator.SetTrigger(MageAnimStrings.fire2Trigger);
         }
@@ -98,6 +108,8 @@ public class MageCombatController : MonoBehaviour
     {
         if (animator.GetBool(MageAnimStrings.canFire1) && IsGrounded() && _fire1Ready) 
         {
+            mageController.IsRunning = false;
+            audioSource.PlayOneShot(mgSpellSfx, 0.8f);
             timeBetweenShoots = shootAttackTime;
             animator.SetTrigger(MageAnimStrings.fire1Trigger);
         }

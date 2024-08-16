@@ -36,6 +36,9 @@ public class KnightCombatController : MonoBehaviour
     private float dmgBuffTimeCounter;
     private bool isDmgBuffActive = false;
 
+    [Header("Combat Sfx")]
+    public AudioSource audioSource;
+    public AudioClip knAttackSFX;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -71,6 +74,8 @@ public class KnightCombatController : MonoBehaviour
     {
         if (_fire1Ready && IsGrounded()) 
         {
+            knightController.IsRunning = false;
+            audioSource.PlayOneShot(knAttackSFX, 0.8f);
             animator.SetTrigger(KnightAnimStrings.meleeAttackTrigger);
             timeBetweenMelee = attackTime;
         }

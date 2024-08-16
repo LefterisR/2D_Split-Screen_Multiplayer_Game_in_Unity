@@ -8,7 +8,8 @@ public class ShieldPickUp : MonoBehaviour
     private float shieldBonus = 5f;
 
     public GameObject shieldPickUpEffect;
-
+    public AudioClip shieldPickUpSound;
+    public AudioSource audioSource;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(TagHandler.Player1) || collision.gameObject.CompareTag(TagHandler.Player2))
@@ -36,13 +37,20 @@ public class ShieldPickUp : MonoBehaviour
                     Destroy(effectInstance, particleSystemDuration);
                 }
 
+
+                audioSource.clip = shieldPickUpSound;
+                float sfxTime = shieldPickUpSound.length;
+                audioSource.Play();
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+
                 if ((playerShield + shieldBonus) > playerMaxShield)
                 {
                     collision.gameObject.GetComponent<PlayerHealth>().shield = playerMaxShield;
                 }
                 else collision.gameObject.GetComponent<PlayerHealth>().shield += shieldBonus;
 
-                Destroy(gameObject);
+                Destroy(gameObject, sfxTime);
             }
         }
     }
