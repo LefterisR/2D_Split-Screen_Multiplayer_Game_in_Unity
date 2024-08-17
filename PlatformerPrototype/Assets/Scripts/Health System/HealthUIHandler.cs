@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine.SceneManagement;
 
 public class HealthUIHandler : MonoBehaviour
 {
@@ -22,7 +23,14 @@ public class HealthUIHandler : MonoBehaviour
     public TMP_Text p2HpValue;
     public Image p2HealthBar;
     public Image p2HeartIcon;
-
+    [Header("Game Over Screen")]
+    public GameObject endGamePanel;
+    public TMP_Text endGamePanelText;
+    public AudioSource audioSource;
+    private readonly string defaultMessage = " is Victorious!";
+    //private readonly string p1Name = "Player 1";
+    //private readonly string p2Name = "Player 2";
+    private readonly int firstSceneNum = 0;
 
     private PlayerHealth player1HealthScript;
     private float p1MaxShield;
@@ -152,6 +160,28 @@ public class HealthUIHandler : MonoBehaviour
 
         if (callCounter < 10) { return true; }
         else return false;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PlayAgain() 
+    {
+        SceneManager.LoadScene(firstSceneNum);
+    }
+
+    private void GameEnded(string playerWon) 
+    {
+        Time.timeScale = 0;
+
+        audioSource.enabled = true;
+
+        endGamePanel.SetActive(true);
+
+        endGamePanelText.text = playerWon + defaultMessage;
+    
     }
 
 }
