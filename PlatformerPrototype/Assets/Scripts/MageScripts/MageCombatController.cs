@@ -113,7 +113,7 @@ public class MageCombatController : MonoBehaviour
             timeBetweenShoots = shootAttackTime;
             animator.SetTrigger(MageAnimStrings.fire1Trigger);
         }
-        Debug.Log("Clicked Pressed");
+       // Debug.Log("Clicked Pressed");
     }
 
     // Update is called once per frame

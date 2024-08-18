@@ -23,14 +23,12 @@ public class HealthUIHandler : MonoBehaviour
     public TMP_Text p2HpValue;
     public Image p2HealthBar;
     public Image p2HeartIcon;
+
     [Header("Game Over Screen")]
-    public GameObject endGamePanel;
-    public TMP_Text endGamePanelText;
     public AudioSource audioSource;
-    private readonly string defaultMessage = " is Victorious!";
-    //private readonly string p1Name = "Player 1";
-    //private readonly string p2Name = "Player 2";
-    private readonly int firstSceneNum = 0;
+    public GameObject endGameWindow;
+    public TMP_Text endGameMessage;
+    public float timeToPause;
 
     private PlayerHealth player1HealthScript;
     private float p1MaxShield;
@@ -43,8 +41,24 @@ public class HealthUIHandler : MonoBehaviour
     static int callCounter = 0;
     private bool callFillHeart = true;
 
+
+    public void OnExitGame() 
+    {
+
+        Application.Quit();
+
+    }
+
+    public void OnPlayAgain() 
+    {
+        Debug.Log("Button Clicked!");
+        SceneManager.LoadScene(0);
+
+    }
+
     private void Start()
     {
+
         GameObject player1 = GameObject.FindGameObjectWithTag(TagHandler.Player1);
         GameObject player2 = GameObject.FindGameObjectWithTag(TagHandler.Player2);
 
@@ -69,6 +83,11 @@ public class HealthUIHandler : MonoBehaviour
     {
         float hp = player1HealthScript.health;
 
+        if (hp <= 0) 
+        {
+            EndGame("Player 2");
+        }
+
         p1HealthBar.fillAmount = Mathf.Clamp(hp/p1MaxHealth, 0, 1);
 
         if (p1HealthBar.fillAmount == 0) p1HeartIcon.sprite = hearts[1];
@@ -79,6 +98,11 @@ public class HealthUIHandler : MonoBehaviour
     private void UpdatePlayer2HpBar()
     {
         float hp = player2HealthScript.health;
+
+        if (hp <= 0)
+        {
+            EndGame("Player 1");
+        }
 
         p2HealthBar.fillAmount = Mathf.Clamp(hp / p2MaxHealth, 0, 1);
 
@@ -162,25 +186,25 @@ public class HealthUIHandler : MonoBehaviour
         else return false;
     }
 
-    public void QuitGame()
+    private void EndGame(string winner) 
     {
-        Application.Quit();
-    }
-
-    public void PlayAgain() 
-    {
-        SceneManager.LoadScene(firstSceneNum);
-    }
-
-    private void GameEnded(string playerWon) 
-    {
-        Time.timeScale = 0;
+        Cursor.visible = true;
 
         audioSource.enabled = true;
 
-        endGamePanel.SetActive(true);
+        endGameWindow.SetActive(true);
+        endGameMessage.text = winner + " is victorious!";
 
-        endGamePanelText.text = playerWon + defaultMessage;
+        //StartCoroutine(PauseGame());
+
+    }
+
+    IEnumerator PauseGame() 
+    {
+
+        yield return new WaitForSeconds(timeToPause);
+
+        Time.timeScale = 0;
     
     }
 

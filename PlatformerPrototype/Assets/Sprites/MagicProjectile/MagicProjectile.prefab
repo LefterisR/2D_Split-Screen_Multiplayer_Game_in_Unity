@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 15
-  projectileDmg: 12
+  projectileDmg: 1000
   projectileDirection: {x: 0, y: 0}
   enemyTagPC: 
   impactEffect: {fileID: 8911629777899369016, guid: d386c69a417cda94bb37e0d5bf02afa2, type: 3}

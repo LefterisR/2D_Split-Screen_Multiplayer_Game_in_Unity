@@ -12,8 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public float health;
     public float maxHealth = 100;
 
-    [SerializeField]
-    private bool isAlive = true;
+    //[SerializeField]
+    //private bool isAlive = true;
     [SerializeField]
     private float spikeDmg = 2f;
     [SerializeField]
@@ -36,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject damageHealthEffect;
 
     private SpriteRenderer playerSprite;
+
+    public GameObject deathRayEffect;
 
     private void Awake()
     {
@@ -103,10 +105,16 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("i frames");
         }
 
-        
 
-        if(health <=0) isAlive = false;
-    
+
+        if (health <= 0)
+        {
+            //isAlive = false;
+            Vector3 disp = new(0, 1, 0);
+            Instantiate(deathRayEffect, transform.position + disp, Quaternion.identity);
+            Destroy(gameObject);
+            
+        }
     }
 
     //Healh pick up

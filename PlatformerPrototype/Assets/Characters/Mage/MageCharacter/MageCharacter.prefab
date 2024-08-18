@@ -374,6 +374,8 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.22, b: 0.22, a: 1}
   damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
   damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}
+  gameOverUIinstance: {fileID: 4491885573052869674, guid: 768b928a21c69e04bbd87aaa57728742, type: 3}
+  deathRayEffect: {fileID: 18447363226284455, guid: 03e69f9a88d439c4392e1f2cf9214536, type: 3}
 --- !u!82 &2920018526902827735
 AudioSource:
   m_ObjectHideFlags: 0
