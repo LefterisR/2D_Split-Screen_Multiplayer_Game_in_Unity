@@ -26,17 +26,19 @@ public class MageCombatController : MonoBehaviour
     private float timeBetweenMelee=0;
     public float meleeAttackTime = 1f;
     private bool _fire1Ready = true;
-    private float baseDmgValueM;
+    private float baseDmgValueMelee;
 
     //Range attack 
     [Header("Range Attack")]
     private float timeBetweenShoots=0;
     [SerializeField]
     private float shootAttackTime = 1f;
+    [SerializeField]
+    private float baseDmgValueRange;
     public Transform firePoint;
     public MagicProjectileController magicProjectile;
     private bool _fire2Ready = true;
-    private float baseDmgValueR;
+   
 
     [Header("Combat SFX")]
     public AudioSource audioSource;
@@ -75,7 +77,7 @@ public class MageCombatController : MonoBehaviour
     {
         enemyLayerMask = (1<<enemyLayerCode);
 
-        baseDmgValueM = meleeDmg;
+        baseDmgValueMelee = meleeDmg;
     }
 
     private void OnEnable()
@@ -158,7 +160,7 @@ public class MageCombatController : MonoBehaviour
 
         if (isDmgBuffActive && dmgBuffTimeCounter <= 0)
         {
-            meleeDmg = baseDmgValueM;
+            meleeDmg = baseDmgValueMelee;
             isDmgBuffActive = false;
             Debug.Log(meleeDmg);
         }
@@ -177,8 +179,8 @@ public class MageCombatController : MonoBehaviour
 
             collision.GetComponent<DamageBuffBehaviour>().DestroyDamagePotion();
 
-            Debug.Log(meleeDmg);
-
+            Debug.Log("Melee damage buffed " + meleeDmg);
+            Debug.Log("Projectile damage buffed " + meleeDmg);
         }
     }
 
@@ -190,12 +192,27 @@ public class MageCombatController : MonoBehaviour
     }
 
   
-
+    //Spawn projectile at set animation frame
     public void OnFire1SpawnProjectile()
     {
-        MagicProjectileController mC = Instantiate(magicProjectile, firePoint.position, firePoint.rotation);
+        
+        //MagicProjectileController mC = Instantiate(magicProjectile, firePoint.position, firePoint.rotation);
+       
+        
+        GameObject projectile = ObjectPool.instance.GetPooledObject();
+        MagicProjectileController mC = projectile.GetComponent<MagicProjectileController>();
         mC.projectileDirection = new Vector2(transform.localScale.x, 0f);
         mC.enemyTagPC = enemyTag;
+
+        if (isDmgBuffActive)
+        {
+            mC.SetProjectileDmg(baseDmgValueRange, BuffData.damageBuff, isDmgBuffActive);
+        }
+        else mC.SetProjectileDmg(baseDmgValueRange);
+
+        projectile.transform.position = firePoint.position;
+        projectile.SetActive(true);
+
     }
 
     //Attack Scan

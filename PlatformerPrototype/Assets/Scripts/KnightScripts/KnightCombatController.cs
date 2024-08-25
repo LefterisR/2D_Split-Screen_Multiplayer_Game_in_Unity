@@ -116,6 +116,7 @@ public class KnightCombatController : MonoBehaviour
     }
 
 
+    //Activate damage buff
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(TagHandler.DamageBuff)) 

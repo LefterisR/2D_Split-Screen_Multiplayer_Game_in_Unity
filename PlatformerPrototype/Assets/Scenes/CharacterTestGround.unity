@@ -408,9 +408,9 @@ GameObject:
   - component: {fileID: 426224731}
   - component: {fileID: 426224730}
   - component: {fileID: 426224729}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: TestMob
-  m_TagString: Player1
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,8 +430,7 @@ MonoBehaviour:
   shield: 0
   maxShield: 40
   health: 0
-  maxHealth: 100
-  isAlive: 1
+  maxHealth: 1000
   spikeDmg: 2
   spikeBallDmg: 8.5
   invincibilityTime: 1
@@ -439,7 +438,6 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.22, b: 0.22, a: 1}
   damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
   damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}
-  healthUIHandlerInstance: {fileID: 0}
   deathRayEffect: {fileID: 0}
 --- !u!61 &426224730
 BoxCollider2D:
@@ -547,7 +545,7 @@ Transform:
   m_GameObject: {fileID: 426224728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.78, y: -3.13, z: 0.027636219}
+  m_LocalPosition: {x: 1.4, y: -3.13, z: 0.027636219}
   m_LocalScale: {x: 5, y: 14.633501, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1419,6 +1417,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d77016cde01b5147a0732046c4605cd, type: 3}
+--- !u!1001 &1625984037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.885225
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.9322214
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.8806086
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456854046823005505, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_Name
+      value: damage buff potion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
 --- !u!1 &1651400657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1562,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef00d17db4d7afb4189de68fd1d1b3bc, type: 3}
+--- !u!1001 &1693185286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.952502
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8964305
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.8806086
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658202131874214800, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456854046823005505, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
+      propertyPath: m_Name
+      value: damage buff potion (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc71f578bff285f4cb67865ea859e313, type: 3}
 --- !u!1 &1818323141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4563168808842614152, guid: 9b027df58e3fa3f4da1f888ec99b5031, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7197511
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 4563168808842614152, guid: 9b027df58e3fa3f4da1f888ec99b5031, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2263,3 +2375,5 @@ SceneRoots:
   - {fileID: 6640447537775347278}
   - {fileID: 1682018873}
   - {fileID: 7681910237398732103}
+  - {fileID: 1625984037}
+  - {fileID: 1693185286}

@@ -10,7 +10,7 @@ public class MagicProjectileController : MonoBehaviour
 {
     [SerializeField] 
     private float projectileSpeed = 25;
-    [SerializeField] float projectileDmg = 4.5f;
+    private float projectileDmg = 1f;
 
     public Vector2 projectileDirection;
     public string enemyTagPC;
@@ -77,8 +77,8 @@ public class MagicProjectileController : MonoBehaviour
         }
 
 
-        Destroy(gameObject);
-
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -107,9 +107,22 @@ public class MagicProjectileController : MonoBehaviour
     }
 
     
-    private void OnBecameInvisible()
+   // private void OnBecameInvisible()
+   // {
+   //     Destroy(gameObject);
+    //}
+
+    public void SetProjectileDmg(float baseDmg, float buff = 0, bool isBuffed = false) 
     {
-        Destroy(gameObject);
+        if (isBuffed)
+        {
+            projectileDmg = baseDmg + buff;
+        }
+        else 
+        {
+            projectileDmg = baseDmg;
+        }
+        
     }
 
 }

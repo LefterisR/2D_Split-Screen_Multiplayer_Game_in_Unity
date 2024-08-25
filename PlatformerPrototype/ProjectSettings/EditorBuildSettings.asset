@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Character Selection Screen.unity
     guid: 2d828cf03a4ebbd408f82417d62b162e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainGame.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0ff13a0a540ef774288119ddf23b8ef0, type: 2}

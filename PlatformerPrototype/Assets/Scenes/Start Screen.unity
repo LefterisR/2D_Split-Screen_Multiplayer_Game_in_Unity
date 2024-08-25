@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -777, y: 425}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -499.91666, y: 403.09998}
+  m_SizeDelta: {x: 754.1667, y: 93.8001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120488957
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Name
+  m_text: Dungeon Brawler
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b1ec0fc169f9a49943da0b6824117a, type: 2}
   m_sharedMaterial: {fileID: -2975097045028384000, guid: f2b1ec0fc169f9a49943da0b6824117a, type: 2}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -461.0205, w: -35.627834}
+  m_margin: {x: 0, y: 0, z: 1.7371216, w: 0.55490494}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

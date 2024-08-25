@@ -53,7 +53,7 @@ public class PortalBehavior : MonoBehaviour
                     spriteRenderer.sprite = portalSprites[i];
                 }
 
-                Debug.Log(spriteRenderer.sprite.name);
+                //Debug.Log(spriteRenderer.sprite.name);
 
                 animationTimerCnd = animationTime;
             }

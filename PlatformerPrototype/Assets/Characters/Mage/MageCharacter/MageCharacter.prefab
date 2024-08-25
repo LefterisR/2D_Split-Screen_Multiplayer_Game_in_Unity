@@ -31,6 +31,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5608640651775416841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4707855997430029178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7522911919093144193}
+  - component: {fileID: 3094057944168762081}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7522911919093144193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707855997430029178}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.6757522, y: 1.0826535, z: 6.4526353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5608640651775416841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3094057944168762081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707855997430029178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee91c2b0ee774a742908f93d2fd822a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicProjectilePrefab: {fileID: 8255084174538401627, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
 --- !u!1 &6462467430978409339
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +149,7 @@ Transform:
   m_Children:
   - {fileID: 1494551457205820898}
   - {fileID: 1266424998676036432}
+  - {fileID: 7522911919093144193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7125246711266961615
@@ -344,6 +390,7 @@ MonoBehaviour:
   meleeDmg: 5
   meleeAttackTime: 0.8
   shootAttackTime: 0.8
+  baseDmgValueRange: 40
   firePoint: {fileID: 1494551457205820898}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
   audioSource: {fileID: 2920018526902827735}
@@ -366,7 +413,6 @@ MonoBehaviour:
   maxShield: 60
   health: 0
   maxHealth: 80
-  isAlive: 1
   spikeDmg: 2
   spikeBallDmg: 8.5
   invincibilityTime: 1
@@ -374,7 +420,6 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.22, b: 0.22, a: 1}
   damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
   damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}
-  gameOverUIinstance: {fileID: 4491885573052869674, guid: 768b928a21c69e04bbd87aaa57728742, type: 3}
   deathRayEffect: {fileID: 18447363226284455, guid: 03e69f9a88d439c4392e1f2cf9214536, type: 3}
 --- !u!82 &2920018526902827735
 AudioSource:
