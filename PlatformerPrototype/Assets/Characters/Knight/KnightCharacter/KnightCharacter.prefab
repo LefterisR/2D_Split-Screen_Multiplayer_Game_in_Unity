@@ -320,6 +320,7 @@ MonoBehaviour:
   activeActionMap: PlayerController
   audioSource: {fileID: 4941403900397198596}
   knAttackSFX: {fileID: 8300000, guid: 33539203bb961454f97f09a872ee7ad5, type: 3}
+  dmgBuffSfx: {fileID: 8300000, guid: 1394f12a380605942b97e96d6b446c1d, type: 3}
 --- !u!114 &3724979253078789527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +337,6 @@ MonoBehaviour:
   maxShield: 30
   health: 0
   maxHealth: 120
-  isAlive: 1
   spikeDmg: 2
   spikeBallDmg: 8.5
   invincibilityTime: 1.2
@@ -344,7 +344,6 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.2216981, b: 0.2216981, a: 1}
   damageShieldEffect: {fileID: 1271602822497472417, guid: cbf38bd7eb682c944ac84608d577b8fc, type: 3}
   damageHealthEffect: {fileID: 3731577055868894110, guid: afa023097a2eddf4a9166380c0ab5aa1, type: 3}
-  gameOverUIinstance: {fileID: 4491885573052869674, guid: 768b928a21c69e04bbd87aaa57728742, type: 3}
   deathRayEffect: {fileID: 18447363226284455, guid: 03e69f9a88d439c4392e1f2cf9214536, type: 3}
 --- !u!82 &4941403900397198596
 AudioSource:

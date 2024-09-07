@@ -39,6 +39,7 @@ public class KnightCombatController : MonoBehaviour
     [Header("Combat Sfx")]
     public AudioSource audioSource;
     public AudioClip knAttackSFX;
+    public AudioClip dmgBuffSfx;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -121,6 +122,7 @@ public class KnightCombatController : MonoBehaviour
     {
         if (collision.CompareTag(TagHandler.DamageBuff)) 
         {
+            audioSource.PlayOneShot(dmgBuffSfx, 0.8f);
             dmgBuffTimeCounter = BuffData.damageBuffTime;
             isDmgBuffActive = true;
             meleeDmg += BuffData.damageBuff;

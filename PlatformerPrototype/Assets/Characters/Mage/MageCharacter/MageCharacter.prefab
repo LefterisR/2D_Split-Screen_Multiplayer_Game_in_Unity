@@ -396,6 +396,7 @@ MonoBehaviour:
   audioSource: {fileID: 2920018526902827735}
   mgStaffSfx: {fileID: 8300000, guid: fd9fb08f743cb0f469daefd48a8c95cf, type: 3}
   mgSpellSfx: {fileID: 8300000, guid: 21e1c48c4766e1241ab936165c0d4f06, type: 3}
+  dmgBuffSfx: {fileID: 8300000, guid: 1394f12a380605942b97e96d6b446c1d, type: 3}
   activeActionMap: PlayerKeyboard
 --- !u!114 &2707334693667430614
 MonoBehaviour:

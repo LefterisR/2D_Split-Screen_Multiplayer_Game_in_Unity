@@ -44,6 +44,7 @@ public class MageCombatController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip mgStaffSfx;
     public AudioClip mgSpellSfx;
+    public AudioClip dmgBuffSfx;
 
     private bool isDmgBuffActive = false;
     private float dmgBuffTimeCounter;
@@ -173,6 +174,7 @@ public class MageCombatController : MonoBehaviour
     {
         if (collision.CompareTag(TagHandler.DamageBuff))
         {
+            audioSource.PlayOneShot(dmgBuffSfx, 0.8f);
             dmgBuffTimeCounter = BuffData.damageBuffTime;
             isDmgBuffActive = true;
             meleeDmg += BuffData.damageBuff;

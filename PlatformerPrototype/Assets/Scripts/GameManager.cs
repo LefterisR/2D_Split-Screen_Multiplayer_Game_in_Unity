@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private GameObject _activePlayer1;
     private GameObject _activePlayer2;
 
+    public int targetFrameRate = 60;
+
     void LoadCharacterToScene(int index,int playerCode) 
     {
         GameObject selectedCharacter = characterDatabase.GetCharacterPrefab(index);
@@ -92,6 +94,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Cursor.visible = false;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFrameRate;
     }
     void Start()
     {

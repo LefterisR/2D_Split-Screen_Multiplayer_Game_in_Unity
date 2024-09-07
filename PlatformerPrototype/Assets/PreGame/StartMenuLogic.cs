@@ -7,8 +7,14 @@ public class StartMenuLogic : MonoBehaviour
 {
     [SerializeField]
     private AudioSource startButtonAudio;
+    [SerializeField]
+    private AudioClip startGameClip;
+    [SerializeField] 
+    private AudioClip buttonClip;
     [SerializeField] 
     private float startSoundTime;
+
+    public GameObject creditsPannel;
 
     private int currentSceneIndex = 0; //Start Scene Index
     // Start is called before the first frame update
@@ -19,6 +25,7 @@ public class StartMenuLogic : MonoBehaviour
 
     public void StartGame() 
     {
+        startButtonAudio.clip = startGameClip;
         startButtonAudio.Play();
         StartCoroutine(LoadNextSceneDelayed());
     
@@ -27,6 +34,22 @@ public class StartMenuLogic : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void OnOpenCredits() 
+    {
+
+        startButtonAudio.clip = buttonClip;
+        startButtonAudio.Play();
+        creditsPannel.SetActive(true);
+    
+    }
+
+    public void OnCloseCredits() 
+    {
+        startButtonAudio.clip = buttonClip;
+        startButtonAudio.Play();
+        creditsPannel.SetActive(false);
     }
     IEnumerator LoadNextSceneDelayed() 
     {
