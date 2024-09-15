@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArcherBehaviour : MonoBehaviour
@@ -15,6 +16,10 @@ public class ArcherBehaviour : MonoBehaviour
 
     private GameObject focusedPlayer = null;
     private Transform lastKnownEnemyTransform;
+
+    [SerializeField]
+    private float healthPoints = 45;
+    public GameObject deathRayVFX;
 
 
     // Start is called before the first frame update
@@ -56,7 +61,15 @@ public class ArcherBehaviour : MonoBehaviour
                 transform.localScale = new(1, 1, 1);
             }
         }
-       
+
+        if (healthPoints <= 0) 
+        {
+
+            Vector3 disp = new(0, 1, 0);
+            Instantiate(deathRayVFX, transform.position + disp, Quaternion.identity);
+            Destroy(gameObject);
+  
+        }
 
     }
 
@@ -114,4 +127,12 @@ public class ArcherBehaviour : MonoBehaviour
         }
         
     }
+
+    public void TakeDamage(float dmg) 
+    {
+        healthPoints -= dmg;
+    }
+
+    
+
 }

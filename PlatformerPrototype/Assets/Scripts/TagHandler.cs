@@ -15,6 +15,7 @@ internal class TagHandler
     internal static string DamageBuff = "DamageBuff";
     internal static string Slime = "Slime";
     internal static string Crate = "Crate";
+    internal static string Archer = "Archer";
     // internal static int Player1LayerCode = 1;
     // internal static int Player2LayerCode = 2;
 }

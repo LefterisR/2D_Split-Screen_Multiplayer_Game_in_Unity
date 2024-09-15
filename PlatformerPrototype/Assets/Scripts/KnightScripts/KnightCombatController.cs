@@ -150,8 +150,10 @@ public class KnightCombatController : MonoBehaviour
         {
             if (enemyEntity != null)
             {
-               
-                if(enemyEntity.gameObject.layer == enemyLayerCode) 
+
+                if (enemyEntity.isTrigger) continue;
+
+                if (enemyEntity.gameObject.layer == enemyLayerCode) 
                 {
                     enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
                     Debug.Log(enemyEntity.name);
@@ -166,10 +168,10 @@ public class KnightCombatController : MonoBehaviour
                     Debug.Log(enemyEntity.name);
                     enemyEntity.GetComponent<BreakableCrateLogic>().BrakeCrate(meleeDmg);
                 }
-                //if (enemyEntity.IsTouchingLayers(enemyLayerMask))
-               // {
-                 //   
-                //}
+                if (enemyEntity.gameObject.layer == LayersHandler.Archer) 
+                {
+                    enemyEntity.GetComponent<ArcherBehaviour>().TakeDamage(meleeDmg);
+                }
             }
         }
 

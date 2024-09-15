@@ -220,6 +220,226 @@ public partial class @Player1: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SplitKeyboard1"",
+            ""id"": ""53686994-16c7-4db0-b853-f5bdf9aa3ed6"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""eec01e7b-dba6-4d45-97e5-4cd9a31f2782"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""df04fd15-c5e8-4b92-bf2d-7023e20bf79b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6eecd43b-4f0d-456e-a58a-e2b1424b200b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire2"",
+                    ""type"": ""Button"",
+                    ""id"": ""83bd5fc7-4c0b-433b-8b5b-2f3210ac6620"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""b8962637-1756-41b7-a523-46f2c0948fad"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5033cd81-8abe-425b-b9a2-6f1e25fc86b2"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cf374e8e-9dd6-409b-a751-1634dcf10e1f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c0b9b1e-41b9-4299-bc69-5bd00d2a6f2f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9180bea0-3c2b-461f-8d67-98831daf359e"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98dac444-104c-49b0-b934-5787466f9edf"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""SplitKeyboard2"",
+            ""id"": ""2fde86a9-466a-452c-b664-c77d15b1a862"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""3456a077-ee5f-4aba-9af8-1888fa3cb5ca"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed46b57d-63a8-492a-9aff-84fb876d200c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire1"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb0a8fa6-78fe-48b7-b032-c105ba6b300e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b35d5964-6033-4a56-a029-3aea0a69666f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""895e8f1e-6737-4d97-852a-9b2761345fc2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b990be37-9ab6-4501-a97c-697048e9164b"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2146db9d-f6c9-4875-acc3-c992d7c7baf5"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac712715-00fa-4c2c-acdd-eeffed32a528"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c62b3269-f283-411d-b56d-1623147b7d33"",
+                    ""path"": ""<Keyboard>/numpadMultiply"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b681e3f9-a0a4-4a37-8632-9b867f303555"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -236,6 +456,18 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         m_PlayerController_Jump = m_PlayerController.FindAction("Jump", throwIfNotFound: true);
         m_PlayerController_Fire1 = m_PlayerController.FindAction("Fire1", throwIfNotFound: true);
         m_PlayerController_Fire2 = m_PlayerController.FindAction("Fire2", throwIfNotFound: true);
+        // SplitKeyboard1
+        m_SplitKeyboard1 = asset.FindActionMap("SplitKeyboard1", throwIfNotFound: true);
+        m_SplitKeyboard1_Move = m_SplitKeyboard1.FindAction("Move", throwIfNotFound: true);
+        m_SplitKeyboard1_Jump = m_SplitKeyboard1.FindAction("Jump", throwIfNotFound: true);
+        m_SplitKeyboard1_Fire1 = m_SplitKeyboard1.FindAction("Fire1", throwIfNotFound: true);
+        m_SplitKeyboard1_Fire2 = m_SplitKeyboard1.FindAction("Fire2", throwIfNotFound: true);
+        // SplitKeyboard2
+        m_SplitKeyboard2 = asset.FindActionMap("SplitKeyboard2", throwIfNotFound: true);
+        m_SplitKeyboard2_Move = m_SplitKeyboard2.FindAction("Move", throwIfNotFound: true);
+        m_SplitKeyboard2_Jump = m_SplitKeyboard2.FindAction("Jump", throwIfNotFound: true);
+        m_SplitKeyboard2_Fire1 = m_SplitKeyboard2.FindAction("Fire1", throwIfNotFound: true);
+        m_SplitKeyboard2_Fire2 = m_SplitKeyboard2.FindAction("Fire2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -433,6 +665,146 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         }
     }
     public PlayerControllerActions @PlayerController => new PlayerControllerActions(this);
+
+    // SplitKeyboard1
+    private readonly InputActionMap m_SplitKeyboard1;
+    private List<ISplitKeyboard1Actions> m_SplitKeyboard1ActionsCallbackInterfaces = new List<ISplitKeyboard1Actions>();
+    private readonly InputAction m_SplitKeyboard1_Move;
+    private readonly InputAction m_SplitKeyboard1_Jump;
+    private readonly InputAction m_SplitKeyboard1_Fire1;
+    private readonly InputAction m_SplitKeyboard1_Fire2;
+    public struct SplitKeyboard1Actions
+    {
+        private @Player1 m_Wrapper;
+        public SplitKeyboard1Actions(@Player1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_SplitKeyboard1_Move;
+        public InputAction @Jump => m_Wrapper.m_SplitKeyboard1_Jump;
+        public InputAction @Fire1 => m_Wrapper.m_SplitKeyboard1_Fire1;
+        public InputAction @Fire2 => m_Wrapper.m_SplitKeyboard1_Fire2;
+        public InputActionMap Get() { return m_Wrapper.m_SplitKeyboard1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SplitKeyboard1Actions set) { return set.Get(); }
+        public void AddCallbacks(ISplitKeyboard1Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_SplitKeyboard1ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SplitKeyboard1ActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Fire1.started += instance.OnFire1;
+            @Fire1.performed += instance.OnFire1;
+            @Fire1.canceled += instance.OnFire1;
+            @Fire2.started += instance.OnFire2;
+            @Fire2.performed += instance.OnFire2;
+            @Fire2.canceled += instance.OnFire2;
+        }
+
+        private void UnregisterCallbacks(ISplitKeyboard1Actions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Fire1.started -= instance.OnFire1;
+            @Fire1.performed -= instance.OnFire1;
+            @Fire1.canceled -= instance.OnFire1;
+            @Fire2.started -= instance.OnFire2;
+            @Fire2.performed -= instance.OnFire2;
+            @Fire2.canceled -= instance.OnFire2;
+        }
+
+        public void RemoveCallbacks(ISplitKeyboard1Actions instance)
+        {
+            if (m_Wrapper.m_SplitKeyboard1ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISplitKeyboard1Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_SplitKeyboard1ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SplitKeyboard1ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SplitKeyboard1Actions @SplitKeyboard1 => new SplitKeyboard1Actions(this);
+
+    // SplitKeyboard2
+    private readonly InputActionMap m_SplitKeyboard2;
+    private List<ISplitKeyboard2Actions> m_SplitKeyboard2ActionsCallbackInterfaces = new List<ISplitKeyboard2Actions>();
+    private readonly InputAction m_SplitKeyboard2_Move;
+    private readonly InputAction m_SplitKeyboard2_Jump;
+    private readonly InputAction m_SplitKeyboard2_Fire1;
+    private readonly InputAction m_SplitKeyboard2_Fire2;
+    public struct SplitKeyboard2Actions
+    {
+        private @Player1 m_Wrapper;
+        public SplitKeyboard2Actions(@Player1 wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_SplitKeyboard2_Move;
+        public InputAction @Jump => m_Wrapper.m_SplitKeyboard2_Jump;
+        public InputAction @Fire1 => m_Wrapper.m_SplitKeyboard2_Fire1;
+        public InputAction @Fire2 => m_Wrapper.m_SplitKeyboard2_Fire2;
+        public InputActionMap Get() { return m_Wrapper.m_SplitKeyboard2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SplitKeyboard2Actions set) { return set.Get(); }
+        public void AddCallbacks(ISplitKeyboard2Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_SplitKeyboard2ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SplitKeyboard2ActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Fire1.started += instance.OnFire1;
+            @Fire1.performed += instance.OnFire1;
+            @Fire1.canceled += instance.OnFire1;
+            @Fire2.started += instance.OnFire2;
+            @Fire2.performed += instance.OnFire2;
+            @Fire2.canceled += instance.OnFire2;
+        }
+
+        private void UnregisterCallbacks(ISplitKeyboard2Actions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Fire1.started -= instance.OnFire1;
+            @Fire1.performed -= instance.OnFire1;
+            @Fire1.canceled -= instance.OnFire1;
+            @Fire2.started -= instance.OnFire2;
+            @Fire2.performed -= instance.OnFire2;
+            @Fire2.canceled -= instance.OnFire2;
+        }
+
+        public void RemoveCallbacks(ISplitKeyboard2Actions instance)
+        {
+            if (m_Wrapper.m_SplitKeyboard2ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISplitKeyboard2Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_SplitKeyboard2ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SplitKeyboard2ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SplitKeyboard2Actions @SplitKeyboard2 => new SplitKeyboard2Actions(this);
     public interface IPlayerKeyboardActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -441,6 +813,20 @@ public partial class @Player1: IInputActionCollection2, IDisposable
         void OnFire2(InputAction.CallbackContext context);
     }
     public interface IPlayerControllerActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
+    }
+    public interface ISplitKeyboard1Actions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
+    }
+    public interface ISplitKeyboard2Actions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

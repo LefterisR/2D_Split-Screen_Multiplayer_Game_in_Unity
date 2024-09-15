@@ -227,6 +227,8 @@ public class MageCombatController : MonoBehaviour
 
         foreach (Collider2D enemyEntity in enemy) 
         {
+            if(enemyEntity.isTrigger) continue;
+
             if (enemyEntity.gameObject.layer == enemyLayerCode)
             {
                 enemyEntity.GetComponent<PlayerHealth>().TakeDamage(meleeDmg);
@@ -241,6 +243,12 @@ public class MageCombatController : MonoBehaviour
             {
                 Debug.Log(enemyEntity.name);
                 enemyEntity.GetComponent<BreakableCrateLogic>().BrakeCrate(meleeDmg);
+            }
+            if (enemyEntity.gameObject.CompareTag(TagHandler.Archer)) 
+            {
+
+                enemyEntity.GetComponent<ArcherBehaviour>().TakeDamage(meleeDmg);
+
             }
         }
  

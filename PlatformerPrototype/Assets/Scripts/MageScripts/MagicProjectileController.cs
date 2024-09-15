@@ -60,8 +60,12 @@ public class MagicProjectileController : MonoBehaviour
         {
             collision.GetComponent<BreakableCrateLogic>().BrakeCrate(projectileDmg);
         }
+        if (collision.CompareTag(TagHandler.Archer))
+        {
+            collision.GetComponent<ArcherBehaviour>().TakeDamage(projectileDmg);
+        }
 
-        if(impactEffect != null)
+        if (impactEffect != null)
         {
             // Instantiate the impact effect
             GameObject effectInstance = Instantiate(impactEffect, transform.position, Quaternion.identity);
