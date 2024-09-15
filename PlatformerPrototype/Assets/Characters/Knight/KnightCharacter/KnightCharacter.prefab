@@ -316,7 +316,7 @@ MonoBehaviour:
   attackTime: 0.82
   meleeAttackPoint: {fileID: 2795244928111482694}
   scanRadius: 0.8
-  meleeDmg: 17
+  meleeDmg: 18
   activeActionMap: PlayerController
   audioSource: {fileID: 4941403900397198596}
   knAttackSFX: {fileID: 8300000, guid: 33539203bb961454f97f09a872ee7ad5, type: 3}

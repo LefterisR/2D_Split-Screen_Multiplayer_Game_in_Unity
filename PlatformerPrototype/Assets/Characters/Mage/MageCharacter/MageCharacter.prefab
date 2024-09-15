@@ -387,10 +387,10 @@ MonoBehaviour:
   enemyLayerCode: 7
   meleeAttackPoint: {fileID: 1266424998676036432}
   scanRadius: 0.6
-  meleeDmg: 5
+  meleeDmg: 6
   meleeAttackTime: 0.8
   shootAttackTime: 0.8
-  baseDmgValueRange: 40
+  baseDmgValueRange: 36.5
   firePoint: {fileID: 1494551457205820898}
   magicProjectile: {fileID: 1974654445610363505, guid: 0d5c06291e311c541a28f5e0c86d861f, type: 3}
   audioSource: {fileID: 2920018526902827735}
