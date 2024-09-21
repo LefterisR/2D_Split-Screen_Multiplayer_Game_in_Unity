@@ -1618,6 +1618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MageCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 7732147291490190671, guid: ef00d17db4d7afb4189de68fd1d1b3bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2231,7 +2235,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2655535012359356399, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.92
+      value: -6.89
       objectReference: {fileID: 0}
     - target: {fileID: 2655535012359356399, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2270,6 +2274,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5113928818786346510, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
+      propertyPath: scanRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113928818786346510, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
       propertyPath: enemyLayerCode
       value: 6
       objectReference: {fileID: 0}
@@ -2283,7 +2291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5135655744947871148, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6078861665851239846, guid: d9fab74bfa0f7354390cfee088003083, type: 3}
       propertyPath: activeActionMap

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class CharacterManager : MonoBehaviour
 
     private readonly string p1Name = "Player 1";
     private readonly string p2Name = "Player 2";
+
+    [Header("Control Scheme Selection")]
+    public GameObject schemeSelectionPanel;
+    private int _selectedSchemeCode = 0;
+    private readonly int mouseKeyCntr = 0;
+    private readonly int splitKey = 1;
 
     private int _selectedOption = 0; //ALWAYS INITIALIZED
 
@@ -129,6 +136,37 @@ public class CharacterManager : MonoBehaviour
         }
         
     }
+
+    private void OnSchemeSelected() 
+    {
+        schemeSelectionPanel.SetActive(false);
+        PlayerPrefs.SetInt("scheme",_selectedSchemeCode);
+        
+        startGameButton.gameObject.SetActive(true);
+
+        selectP1.gameObject.SetActive(true); 
+        selectP2.gameObject.SetActive(true);
+
+        spriteArtP1.gameObject.SetActive(true);
+        spriteArtP2.gameObject.SetActive(true);
+    }
+
+    public void selectMKCScheme() 
+    {
+        genericButtonPressSound.Play();
+        _selectedSchemeCode = mouseKeyCntr;
+        OnSchemeSelected();
+    }
+
+    public void selectSKScheme() 
+    {
+        genericButtonPressSound.Play();
+        _selectedSchemeCode = splitKey;
+        OnSchemeSelected();
+
+    }
+
+
 
     public void StartGame() 
     {

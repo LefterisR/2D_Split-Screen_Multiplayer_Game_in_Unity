@@ -132,13 +132,14 @@ public class SlimeBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag(TagHandler.Player1) || collision.CompareTag(TagHandler.Player2)) 
+        if (collision.gameObject.CompareTag(TagHandler.Player1) || collision.gameObject.CompareTag(TagHandler.Player2))
         {
-            collision.GetComponent<PlayerHealth>().TakeDamage(slimeDmg);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(slimeDmg);
         }
     }
+
     IEnumerator WaitToDestory()
     {
         anim.SetTrigger("death");

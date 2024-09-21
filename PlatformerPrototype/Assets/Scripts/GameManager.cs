@@ -10,8 +10,14 @@ public class GameManager : MonoBehaviour
     private int confirmedPlayerChoice2;
     private readonly string player1Map = "PlayerKeyboard";
     private readonly string player2Map = "PlayerController";
+    private readonly string player1MapAlt = "SplitKeyboard1";
+    private readonly string player2MapAlt = "SplitKeyboard2";
     private readonly int p1Code = 1;
     private readonly int p2Code = 2;
+    private readonly int schemeMKCcode = 0;
+    private readonly int schemeSKcode = 1;
+    private string selectedInputLayoutP1 = "PlayerKeyboard";
+    private string selectedInputLayoutP2 = "PlayerController";
 
     [SerializeField]
     private CharacterDatabase characterDatabase;
@@ -33,25 +39,26 @@ public class GameManager : MonoBehaviour
     void LoadCharacterToScene(int index,int playerCode) 
     {
         GameObject selectedCharacter = characterDatabase.GetCharacterPrefab(index);
-        
+
         //Retrieve approprite component
+        
         
         if (playerCode == 1)
         {
             
             if (index == 0)     //Knight
             {
-                selectedCharacter.GetComponent<KnightController>().activeActionMap = player1Map; 
-                selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player1Map;
+                selectedCharacter.GetComponent<KnightController>().activeActionMap = selectedInputLayoutP1; 
+                selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = selectedInputLayoutP1;
 
                 //Set enemy layer
                 selectedCharacter.GetComponent<KnightCombatController>().enemyLayerCode = LayersHandler.Player2;
             }
             else if (index == 1) //Mage 
             {
-                selectedCharacter.GetComponent<MageController>().activeActionMap = player1Map;
+                selectedCharacter.GetComponent<MageController>().activeActionMap = selectedInputLayoutP1;
                 
-                selectedCharacter.GetComponent<MageCombatController>().activeActionMap = player1Map;
+                selectedCharacter.GetComponent<MageCombatController>().activeActionMap = selectedInputLayoutP1;
 
                 //Set enemy layer + tag
                 selectedCharacter.GetComponent<MageCombatController>().enemyLayerCode = LayersHandler.Player2;
@@ -68,16 +75,16 @@ public class GameManager : MonoBehaviour
             
             if (index == 0)     //Knight
             {
-                selectedCharacter.GetComponent<KnightController>().activeActionMap = player2Map;
-                selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = player2Map;
+                selectedCharacter.GetComponent<KnightController>().activeActionMap = selectedInputLayoutP2;
+                selectedCharacter.GetComponent<KnightCombatController>().activeActionMap = selectedInputLayoutP2;
 
                 //Set enemy layer
                 selectedCharacter.GetComponent<KnightCombatController>().enemyLayerCode = LayersHandler.Player1;
             }
             else if (index == 1) //Mage 
             {
-                selectedCharacter.GetComponent<MageController>().activeActionMap = player2Map;
-                selectedCharacter.GetComponent<MageCombatController>().activeActionMap = player2Map;
+                selectedCharacter.GetComponent<MageController>().activeActionMap = selectedInputLayoutP2;
+                selectedCharacter.GetComponent<MageCombatController>().activeActionMap = selectedInputLayoutP2;
 
                 //Set enemy layer + tag
                 selectedCharacter.GetComponent<MageCombatController>().enemyLayerCode = LayersHandler.Player1;
@@ -99,6 +106,22 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+
+        int layoutCode = PlayerPrefs.GetInt("scheme");
+
+        if (layoutCode == schemeMKCcode)
+        {
+            selectedInputLayoutP1 = player1Map;
+            selectedInputLayoutP2 = player2Map;
+        }
+        else if (layoutCode == schemeSKcode)
+        {
+
+            selectedInputLayoutP1 = player1MapAlt;
+            selectedInputLayoutP2 = player2MapAlt;
+
+        }
+
         confirmedPlayerChoice1 = PlayerPrefs.GetInt("selectedOptionP1");
         LoadCharacterToScene(confirmedPlayerChoice1,p1Code);
 
