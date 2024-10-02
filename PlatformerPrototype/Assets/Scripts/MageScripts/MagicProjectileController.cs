@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Rendering.Universal;
 
+//Author Rizos Eleftherios
 public class MagicProjectileController : MonoBehaviour
 {
     [SerializeField] 

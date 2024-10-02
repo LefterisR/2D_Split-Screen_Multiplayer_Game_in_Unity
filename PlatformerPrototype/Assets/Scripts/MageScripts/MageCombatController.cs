@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Author Rizos Eleftherios
 public class MageCombatController : MonoBehaviour
 {
     Animator animator;

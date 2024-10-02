@@ -6,6 +6,7 @@ using TMPro;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.SceneManagement;
 
+//Author Rizos Eleftherios
 public class HealthUIHandler : MonoBehaviour
 {
     public Sprite[] shields;

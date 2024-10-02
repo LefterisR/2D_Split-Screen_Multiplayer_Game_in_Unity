@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Xml.Serialization;
-
+//Author Rizos Eleftherios
 public class CharacterManager : MonoBehaviour
 {
     [Header("Player 1 UI")]

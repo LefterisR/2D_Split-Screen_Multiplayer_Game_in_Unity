@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
+//Author Rizos Eleftherios
 public class KnightController : MonoBehaviour
 {
     private Vector2 userInput = new(0, 0);
@@ -78,7 +79,7 @@ public class KnightController : MonoBehaviour
     private bool _isRunning = false;
     private bool _canMove = true;
 
-    private KnightController knightController;
+//   private KnightController knightController;
 //    private bool _isDashing = false;
 
     //Bool Property Fields

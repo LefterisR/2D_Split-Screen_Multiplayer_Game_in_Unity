@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 
+//Author Rizos Eleftherios
 internal class MageAnimStrings
 {
     internal static string isRunning = "isRunning";

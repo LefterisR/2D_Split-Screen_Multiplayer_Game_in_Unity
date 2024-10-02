@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 public class BreakableCrateLogic : MonoBehaviour
 {
     public Sprite brokenCrateSprite;

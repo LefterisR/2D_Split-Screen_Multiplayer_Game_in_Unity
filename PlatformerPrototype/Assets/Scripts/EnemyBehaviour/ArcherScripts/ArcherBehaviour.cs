@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 public class ArcherBehaviour : MonoBehaviour
 {
     public Collider2D targetArea;

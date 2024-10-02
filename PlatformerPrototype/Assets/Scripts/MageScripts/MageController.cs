@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Author Rizos Eleftherios
 
 [RequireComponent(typeof(Rigidbody2D),typeof(Animator))]
 public class MageController : MonoBehaviour

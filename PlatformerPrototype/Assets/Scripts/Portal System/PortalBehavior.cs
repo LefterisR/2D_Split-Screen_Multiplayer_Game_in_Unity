@@ -5,6 +5,8 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
+//Author Rizos Eleftherios
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class PortalBehavior : MonoBehaviour
 {

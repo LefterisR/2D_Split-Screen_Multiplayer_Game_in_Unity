@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Author Rizos Eleftherios
 public class StartMenuLogic : MonoBehaviour
 {
     [SerializeField]
@@ -15,6 +16,7 @@ public class StartMenuLogic : MonoBehaviour
     private float startSoundTime;
 
     public GameObject creditsPannel;
+    public GameObject helpPannel;
 
     private int currentSceneIndex = 0; //Start Scene Index
     // Start is called before the first frame update
@@ -51,6 +53,23 @@ public class StartMenuLogic : MonoBehaviour
         startButtonAudio.Play();
         creditsPannel.SetActive(false);
     }
+
+    public void OnOpenHelp()
+    {
+
+        startButtonAudio.clip = buttonClip;
+        startButtonAudio.Play();
+        helpPannel.SetActive(true);
+
+    }
+
+    public void OnCloseHelp()
+    {
+        startButtonAudio.clip = buttonClip;
+        startButtonAudio.Play();
+        helpPannel.SetActive(false);
+    }
+
     IEnumerator LoadNextSceneDelayed() 
     {
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 public class MovingPlatformLogic : MonoBehaviour
 {
     // Start is called before the first frame update

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;

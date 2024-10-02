@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 public class DamageBuffBehaviour : MonoBehaviour
 {
     public GameObject dmgBuffPickUpEffect;

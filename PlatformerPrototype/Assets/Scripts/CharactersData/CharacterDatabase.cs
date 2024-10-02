@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author Rizos Eleftherios
 [CreateAssetMenu]
 public class CharacterDatabase :ScriptableObject
 {
