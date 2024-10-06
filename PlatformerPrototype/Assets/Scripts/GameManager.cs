@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale= 1.0f;
         Cursor.visible = false;
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;

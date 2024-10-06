@@ -25,7 +25,6 @@ public class CharacterManager : MonoBehaviour
     [Header("General")]
     public AudioSource genericButtonPressSound;
     public TMP_Text currentActivePtxt;
-    public Button startGameButton;
 
     public CharacterDatabase characterDatabase;
 
@@ -52,7 +51,6 @@ public class CharacterManager : MonoBehaviour
 
         HandlePlayer2UI(false);
 
-        startGameButton.enabled = false;
 
         currentActivePtxt.text = p1Name;
     }
@@ -131,8 +129,14 @@ public class CharacterManager : MonoBehaviour
             
             PlayerPrefs.SetInt("selectedOptionP2", _selectedOption);
             HandlePlayer2UI(false);
-            startGameButton.enabled = true;
             hasP2Chose = true;
+        }
+
+        if (hasP1Chose && hasP2Chose) 
+        {
+
+            StartCoroutine(LoadNextSceneDelayed());
+
         }
         
     }
@@ -142,7 +146,6 @@ public class CharacterManager : MonoBehaviour
         schemeSelectionPanel.SetActive(false);
         PlayerPrefs.SetInt("scheme",_selectedSchemeCode);
         
-        startGameButton.gameObject.SetActive(true);
 
         selectP1.gameObject.SetActive(true); 
         selectP2.gameObject.SetActive(true);
@@ -167,11 +170,6 @@ public class CharacterManager : MonoBehaviour
     }
 
 
-
-    public void StartGame() 
-    {
-        StartCoroutine(LoadNextSceneDelayed());
-    }
     void HandlePlayer1UI(bool value)
     {
         nextButtonP1.enabled = value;

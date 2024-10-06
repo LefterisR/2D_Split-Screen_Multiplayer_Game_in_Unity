@@ -748,13 +748,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Controls Type 1 (keyboard and mouse):\r\nPlayer 1\n\u2022 Character movement
     left and right: A and D respectively\r\n\u2022 Jump: Space Bar\n\u2022 Action
-    1: Right MB\n\u2022 Action 2: Left MB\nPlayer 2\n\rControls Type 1 (controller):\r\n\u2022
-    Move character left and right: use left joystick\r\n\u2022 Jump: X or A\r\n\u2022
-    Action 1: \u2610 or X\r\n\u2022 Action 2: O or B\n\nControls Type 2 Split Keyboard
-    (keyboard):\r\nPlayer 1\n\u2022 Character movement left and right: A and D respectively\r\n\u2022
-    Jump: W\r\n\u2022 Action 1: T\r\n\u2022 Action 2: Y\r\nPlayer 2\n\u2022 Character
-    movement left and right: left and right arrow respectively\r\n\u2022 Jump: up
-    arrow\r\n\u2022 Action 1: * (numpad)\r\n\u2022 Action 2: - (numpad)\r\n\r\n"
+    1: Right Mouse Button\n\u2022 Action 2: Left Mouse Button\nPlayer 2\n\rControls
+    Type 1 (controller):\r\n\u2022 Move character left and right: use left joystick\r\n\u2022
+    Jump: X or A\r\n\u2022 Action 1: \u2610 or X\r\n\u2022 Action 2: O or B\n\nControls
+    Type 2 Split Keyboard (keyboard):\r\nPlayer 1\n\u2022 Character movement left
+    and right: A and D respectively\r\n\u2022 Jump: W\r\n\u2022 Action 1: T\r\n\u2022
+    Action 2: Y\r\nPlayer 2\n\u2022 Character movement left and right: left and right
+    arrow respectively\r\n\u2022 Jump: up arrow\r\n\u2022 Action 1: * (numpad)\r\n\u2022
+    Action 2: - (numpad)\r\n\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b1ec0fc169f9a49943da0b6824117a, type: 2}
   m_sharedMaterial: {fileID: -2975097045028384000, guid: f2b1ec0fc169f9a49943da0b6824117a, type: 2}

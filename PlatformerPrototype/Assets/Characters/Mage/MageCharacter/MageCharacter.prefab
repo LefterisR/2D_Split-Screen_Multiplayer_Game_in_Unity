@@ -370,7 +370,7 @@ MonoBehaviour:
   audioSourceRunning: {fileID: 5429795183206747683}
   mgRunSFX: {fileID: 8300000, guid: 35256a8f544e2f34f9275684722c6f2f, type: 3}
   mgJumpSFX: {fileID: 8300000, guid: 523f84a9baedc5c489a68df31c3e64d7, type: 3}
-  activeActionMap: SplitKeyboard1
+  activeActionMap: PlayerKeyboard
 --- !u!114 &5454287917393771230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   mgStaffSfx: {fileID: 8300000, guid: fd9fb08f743cb0f469daefd48a8c95cf, type: 3}
   mgSpellSfx: {fileID: 8300000, guid: 21e1c48c4766e1241ab936165c0d4f06, type: 3}
   dmgBuffSfx: {fileID: 8300000, guid: 1394f12a380605942b97e96d6b446c1d, type: 3}
-  activeActionMap: SplitKeyboard1
+  activeActionMap: PlayerKeyboard
 --- !u!114 &2707334693667430614
 MonoBehaviour:
   m_ObjectHideFlags: 0
