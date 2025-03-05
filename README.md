@@ -12,6 +12,18 @@ Project assigned and supervised by Dr. Minas Dasygenis
 
 University of Western Macedonia, Department of Electrical and Computer Engineering.  
 
+![image](https://github.com/user-attachments/assets/9f740614-40f9-4b28-8f1f-d067a00ea492)
+
+![image](https://github.com/user-attachments/assets/f0e23b18-a5ce-456a-aec6-f8a2f6db7214)
+
+## Features worth mentioning
+- 2 Playable Characters
+- In-game and pre-game UI
+- Hostile NPCs (3 types)
+- Moving Platforms
+- Traps (2 types)
+- Portals
+- Healing, Shielding Potions and Buff attack Potion
 
 ### Third party assets under free license :
 -	SFX – pixabay.com
@@ -23,8 +35,8 @@ University of Western Macedonia, Department of Electrical and Computer Engineeri
 -	craftpix-net-424234-free-slime-sprite-sheets-pixel-art: https://craftpix.net/freebies/free-slime-sprite-sheets-pixel-art/ 
 -	free_bundle_2_trees: https://babanagi.itch.io/10-free-pixel-art-trees 
 -	Particle FX 1.0: https://ragnapixel.itch.io/particle-fx/devlog/575870/11-version-released 
--	UI Soundpack: https://creativecommons.org/licenses/by/4.0/ 
-
+-	UI Soundpack: https://creativecommons.org/licenses/by/4.0/
+-	
 ### Game Functionality
 
 For this project, we decided to implement the player character control system using a keyboard and mouse for Player 1 and a game console controller for Player 2. Menu navigation is done exclusively with a mouse.
