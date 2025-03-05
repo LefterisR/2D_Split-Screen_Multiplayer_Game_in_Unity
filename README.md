@@ -86,3 +86,7 @@ In menu: File>Build we can select the OS and processor architecture for the buil
 
 ![image](https://github.com/user-attachments/assets/534a7134-874f-4665-b1a1-757cf9f5c230)
 
+
+# Video
+[Watch the gameplay showcase video on YouTube](https://www.youtube.com/watch?v=KL_7wRKMAqo)
+
