@@ -36,7 +36,7 @@ University of Western Macedonia, Department of Electrical and Computer Engineeri
 -	free_bundle_2_trees: https://babanagi.itch.io/10-free-pixel-art-trees 
 -	Particle FX 1.0: https://ragnapixel.itch.io/particle-fx/devlog/575870/11-version-released 
 -	UI Soundpack: https://creativecommons.org/licenses/by/4.0/
--	
+
 ### Game Functionality
 
 For this project, we decided to implement the player character control system using a keyboard and mouse for Player 1 and a game console controller for Player 2. Menu navigation is done exclusively with a mouse.
