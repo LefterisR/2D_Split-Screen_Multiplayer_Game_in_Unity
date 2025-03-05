@@ -70,7 +70,7 @@ Player 2:
 
 Unity provides an easy process for compiling and building the project.
 
-In menu: File>Build we can select the OS and processor architecture for the build and which scenes will be shipped in the final product, while by just pressing the build button the task runs automatically. The playable game can be started from the generated .exe file (for windows) 
+In menu: File>Build we can select the OS and processor architecture for the build and which scenes will be shipped in the final product, while by just pressing the build button the task runs automatically. We can run the playable game from the generated .exe file (for windows) 
 
 ![image](https://github.com/user-attachments/assets/534a7134-874f-4665-b1a1-757cf9f5c230)
 
